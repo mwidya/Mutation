@@ -26,6 +26,7 @@
 		E7E077E515D3B63C0020DFD4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */; };
 		E7E077E815D3B6510020DFD4 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E715D3B6510020DFD4 /* QTKit.framework */; };
 		E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F985F515E0DE99003869B5 /* Accelerate.framework */; };
+		EE68A1D0198B990600439139 /* mutBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE68A1CE198B990600439139 /* mutBoard.cpp */; };
 		EE80835219893A6C00317DBF /* Syphon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE80834019893A6C00317DBF /* Syphon.framework */; };
 		EE80835319893A6C00317DBF /* SyphonNameboundClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EE80834319893A6C00317DBF /* SyphonNameboundClient.m */; };
 		EE80835419893A6C00317DBF /* ofxSyphonClient.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE80834919893A6C00317DBF /* ofxSyphonClient.mm */; };
@@ -89,6 +90,8 @@
 		E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		E7E077E715D3B6510020DFD4 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
 		E7F985F515E0DE99003869B5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = /System/Library/Frameworks/Accelerate.framework; sourceTree = "<absolute>"; };
+		EE68A1CE198B990600439139 /* mutBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mutBoard.cpp; sourceTree = "<group>"; };
+		EE68A1CF198B990600439139 /* mutBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mutBoard.h; sourceTree = "<group>"; };
 		EE80834019893A6C00317DBF /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Syphon.framework; sourceTree = "<group>"; };
 		EE80834219893A6C00317DBF /* SyphonNameboundClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyphonNameboundClient.h; sourceTree = "<group>"; };
 		EE80834319893A6C00317DBF /* SyphonNameboundClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyphonNameboundClient.m; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				EE68A1CE198B990600439139 /* mutBoard.cpp */,
+				EE68A1CF198B990600439139 /* mutBoard.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -374,6 +379,7 @@
 				EE80835319893A6C00317DBF /* SyphonNameboundClient.m in Sources */,
 				EE80835519893A6C00317DBF /* ofxSyphonServer.mm in Sources */,
 				EE80835419893A6C00317DBF /* ofxSyphonClient.mm in Sources */,
+				EE68A1D0198B990600439139 /* mutBoard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
