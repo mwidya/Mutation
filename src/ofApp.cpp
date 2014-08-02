@@ -195,9 +195,9 @@ void ofApp::draw(){
 //        if (board->mSyphonServerName == "F6") {
 //            board->draw(0,0);
 //        }
-        if (board->mSyphonServerName == "F7") {
-            board->draw(0,0);
-        }
+//        if (board->mSyphonServerName == "F7") {
+//            board->draw(0,0);
+//        }
 //        if (board->mSyphonServerName == "F8") {
 //            board->draw(0,0);
 //        }
