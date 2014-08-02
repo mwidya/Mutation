@@ -32,7 +32,19 @@ float f9Short = 1700*factor;
 float _x;
 float _dx = 1;
 
+void updateMutBoard0(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+}
+
+void updateMutBoard1(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+
+}
+
 void updateMutBoard2(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+}
+
+void updateMutBoard3(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     _x += _dx;
     
     if ((_x > *width) | (_x < 0)) {
@@ -40,6 +52,7 @@ void updateMutBoard2(int *width, int *height, ofxSyphonServer *syphonServer, ofT
     }
     
     fbo->begin();
+    
     ofClear(255);
     ofSetColor(ofColor::red);
     ofRect(0, 0, *width, *height);
@@ -47,7 +60,20 @@ void updateMutBoard2(int *width, int *height, ofxSyphonServer *syphonServer, ofT
     ofCircle(_x, *height*.5, 50.0);
     texture->loadScreenData(0, 0, *width, *height);
     syphonServer->publishTexture(texture);
+    
     fbo->end();
+    
+}
+
+void updateMutBoard4(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+}
+
+void updateMutBoard5(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+}
+
+void updateMutBoard6(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
 }
 
@@ -72,14 +98,37 @@ void updateMutBoard7(int *width, int *height, ofxSyphonServer *syphonServer, ofT
 
 }
 
+void updateMutBoard8(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+}
+
+void updateMutBoard9(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+}
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    mutBoard *board2 = new mutBoard(f2Long, f2Short, GL_RGBA, "F2");
+//    mutBoard *board0 = new mutBoard(f0Long, f0Short, GL_RGBA, "F0");
+//    boards.push_back(board0);
+//    mutBoard *board1 = new mutBoard(f1Long, f1Short, GL_RGBA, "F1");
+//    boards.push_back(board1);
+//    mutBoard *board2 = new mutBoard(f2Long, f2Short, GL_RGBA, "F2");
+//    boards.push_back(board2);
+    mutBoard *board3 = new mutBoard(f3Long, f3Short, GL_RGBA, "F3");
+    boards.push_back(board3);
+//    mutBoard *board4 = new mutBoard(f4Long, f4Short, GL_RGBA, "F4");
+//    boards.push_back(board4);
+//    mutBoard *board5 = new mutBoard(f5Long, f5Short, GL_RGBA, "F5");
+//    boards.push_back(board5);
+//    mutBoard *board6 = new mutBoard(f6Long, f6Short, GL_RGBA, "F6");
+//    boards.push_back(board6);
     mutBoard *board7 = new mutBoard(f7Long, f7Short, GL_RGBA, "F7");
-    
-    boards.push_back(board2);
     boards.push_back(board7);
+//    mutBoard *board8 = new mutBoard(f8Long, f8Short, GL_RGBA, "F8");
+//    boards.push_back(board8);
+//    mutBoard *board9 = new mutBoard(f9Long, f9Short, GL_RGBA, "F9");
+//    boards.push_back(board9);
 }
 
 //--------------------------------------------------------------
@@ -87,11 +136,35 @@ void ofApp::update(){
     
     for (int i=0; i<boards.size(); i++) {
         mutBoard *board = boards[i];
-        if (board->mSyphonServerName == "F2") {
+        if (board->mSyphonServerName == "F0") {
+            updateMutBoard0(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
+        }
+        else if (board->mSyphonServerName == "F1") {
+            updateMutBoard1(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
+        }
+        else if (board->mSyphonServerName == "F2") {
             updateMutBoard2(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
         }
-        if (board->mSyphonServerName == "F7") {
+        else if (board->mSyphonServerName == "F3") {
+            updateMutBoard3(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
+        }
+        else if (board->mSyphonServerName == "F4") {
+            updateMutBoard4(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
+        }
+        else if (board->mSyphonServerName == "F5") {
+            updateMutBoard5(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
+        }
+        else if (board->mSyphonServerName == "F6") {
+            updateMutBoard6(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
+        }
+        else if (board->mSyphonServerName == "F7") {
             updateMutBoard7(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
+        }
+        else if (board->mSyphonServerName == "F8") {
+            updateMutBoard8(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
+        }
+        else if (board->mSyphonServerName == "F9") {
+            updateMutBoard9(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
         }
     }
 
@@ -101,12 +174,36 @@ void ofApp::update(){
 void ofApp::draw(){
     for (int i=0; i<boards.size(); i++) {
         mutBoard *board = boards[i];
-        if (board->mSyphonServerName == "F2") {
+//        if (board->mSyphonServerName == "F0") {
+//            board->draw(0,0);
+//        }
+//        if (board->mSyphonServerName == "F1") {
+//            board->draw(0,0);
+//        }
+//        if (board->mSyphonServerName == "F2") {
+//            board->draw(0,0);
+//        }
+//        if (board->mSyphonServerName == "F3") {
+//            board->draw(0,0);
+//        }
+//        if (board->mSyphonServerName == "F4") {
+//            board->draw(0,0);
+//        }
+//        if (board->mSyphonServerName == "F5") {
+//            board->draw(0,0);
+//        }
+//        if (board->mSyphonServerName == "F6") {
+//            board->draw(0,0);
+//        }
+        if (board->mSyphonServerName == "F7") {
             board->draw(0,0);
         }
-        else if (board->mSyphonServerName == "F7") {
-            board->draw(512,0);
-        }
+//        if (board->mSyphonServerName == "F8") {
+//            board->draw(0,0);
+//        }
+//        if (board->mSyphonServerName == "F9") {
+//            board->draw(0,0);
+//        }
     }
 }
 
