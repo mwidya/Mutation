@@ -11,7 +11,7 @@ public:
     void update();
     void draw();
     
-    vector<mutBoard> boards;
+    vector<mutBoard*> boards;
     
 //    ofFbo fbo6;
 //    ofxSyphonServer syphonServer6;
