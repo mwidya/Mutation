@@ -15,13 +15,6 @@
 
 class mutBoard
 {
-    ofTexture mTexture;
-    ofxSyphonServer mSyphonServer;
-    ofFbo mFbo;
-    
-    int mWidth, mHeight;
-    int mGlFormat;
-    string mSyphonServerName;
     
 public:
     mutBoard(int width, int height, int glFormat, string syphonServerName);
@@ -29,6 +22,14 @@ public:
     
     void update();
     void draw(float x, float y);
+    
+    ofTexture mTexture;
+    ofxSyphonServer mSyphonServer;
+    ofFbo mFbo;
+    
+    int mWidth, mHeight;
+    int mGlFormat;
+    string mSyphonServerName;
 };
 
 #endif /* defined(__Mutation__mutBoard__) */

@@ -29,73 +29,85 @@ float f8Short = 1700*factor;
 float f9Long = 4300*factor;
 float f9Short = 1700*factor;
 
+float _x;
+float _dx = 1;
+
+void updateMutBoard2(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    _x += _dx;
+    
+    if ((_x > *width) | (_x < 0)) {
+        _dx *= -1;
+    }
+    
+    fbo->begin();
+    ofClear(255);
+    ofSetColor(ofColor::red);
+    ofRect(0, 0, *width, *height);
+    ofSetColor(ofColor::yellow);
+    ofCircle(_x, *height*.5, 50.0);
+    texture->loadScreenData(0, 0, *width, *height);
+    syphonServer->publishTexture(texture);
+    fbo->end();
+    
+}
+
+void updateMutBoard7(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    _x += _dx;
+    
+    if ((_x > *width) | (_x < 0)) {
+        _dx *= -1;
+    }
+    
+    fbo->begin();
+    
+    ofClear(255);
+    ofSetColor(ofColor::chocolate);
+    ofRect(0, 0, *width,  *height);
+    ofSetColor(ofColor::burlyWood);
+    ofCircle(_x, *height*.5, 50.0);
+    texture->loadScreenData(0, 0, *width, *height);
+    syphonServer->publishTexture(texture);
+    
+    fbo->end();
+
+}
+
 //--------------------------------------------------------------
 void ofApp::setup(){
     
+    mutBoard *board2 = new mutBoard(f2Long, f2Short, GL_RGBA, "F2");
     mutBoard *board7 = new mutBoard(f7Long, f7Short, GL_RGBA, "F7");
+    
+    boards.push_back(board2);
     boards.push_back(board7);
-
-/*
-//    mutBoard *board2 = new mutBoard(f2Long, f2Short, GL_RGBA, "F2");
-//    boards.push_back(*board2);
-
-//    syphonServer6.setName("F6");
-//    texture6.allocate(f6Long, f6Short, GL_RGBA);
-//    fbo6.allocate(f6Long, f6Short, GL_RGBA);
-//    
-//    syphonServer7.setName("F2");
-//    texture7.allocate(f2Long, f2Short, GL_RGBA);
-//    fbo7.allocate(f2Long, f2Short, GL_RGBA);*/
 }
-
-float x;
-float dx = 1;
 
 //--------------------------------------------------------------
 void ofApp::update(){
     
     for (int i=0; i<boards.size(); i++) {
-        boards[i]->update();
+        mutBoard *board = boards[i];
+        if (board->mSyphonServerName == "F2") {
+            updateMutBoard2(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
+        }
+        if (board->mSyphonServerName == "F7") {
+            updateMutBoard7(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
+        }
     }
-
-/*
-    x += dx;
-    
-    if ((x > f4Long) | (x < 0)) {
-        dx *= -1;
-    }
-    
-    fbo6.begin();
-    ofClear(255);
-    ofSetColor(ofColor::chocolate);
-    ofRect(0, 0, f6Long, f6Short);
-    ofSetColor(ofColor::burlyWood);
-    ofCircle(x, f6Short*.5, 50.0);
-    texture6.loadScreenData(0, 0, f6Long, f6Short);
-    syphonServer6.publishTexture(&texture6);
-    fbo6.end();
-    
-    fbo7.begin();
-    ofClear(255);
-    ofSetColor(ofColor::red);
-    ofRect(0, 0, f2Long, f2Short);
-    ofSetColor(ofColor::yellow);
-    ofCircle(x, f2Short*.5, 50.0);
-    texture7.loadScreenData(0, 0, f2Long, f2Short);
-    syphonServer7.publishTexture(&texture7);
-    fbo7.end();*/
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    
     for (int i=0; i<boards.size(); i++) {
-        boards[i]->draw(512,0);
+        mutBoard *board = boards[i];
+        if (board->mSyphonServerName == "F2") {
+            board->draw(0,0);
+        }
+        else if (board->mSyphonServerName == "F7") {
+            board->draw(512,0);
+        }
     }
-    
-//    fbo6.draw(0,0);
-//    fbo7.draw(512, 0);
 }
 
 
