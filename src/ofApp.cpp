@@ -29,106 +29,122 @@ float f8Short = 1700*factor;
 float f9Long = 4300*factor;
 float f9Short = 1700*factor;
 
-float _x;
-float _dx = 1;
-
-void updateMutBoard0(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+void ofApp::updateMutBoard0(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+    float _x = ofGetElapsedTimeMillis()/8 % *width;
+    
+    ofSetColor(50, 50, 50);
+    ofRect(0, 0, *width,  *height);
+    ofSetColor(ofColor::blue);
+    ofCircle(_x, *height*.5, 50.0);
     
 }
 
-void updateMutBoard1(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-
-}
-
-void updateMutBoard2(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+void ofApp::updateMutBoard1(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
-}
-
-void updateMutBoard3(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    _x += _dx;
+    float _x = ofGetElapsedTimeMillis()/8 % *width;
     
-    if ((_x > *width) | (_x < 0)) {
-        _dx *= -1;
-    }
-    
-    fbo->begin();
-    
-    ofClear(255);
-    ofSetColor(ofColor::red);
+    ofSetColor(50, 50, 50);
     ofRect(0, 0, *width, *height);
     ofSetColor(ofColor::yellow);
     ofCircle(_x, *height*.5, 50.0);
-    texture->loadScreenData(0, 0, *width, *height);
-    syphonServer->publishTexture(texture);
-    
-    fbo->end();
-    
+
 }
 
-void updateMutBoard4(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    
-}
+void ofApp::updateMutBoard2(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
 
-void updateMutBoard5(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    float _x = ofGetElapsedTimeMillis()/8 % *width;
     
-}
-
-void updateMutBoard6(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    
-}
-
-void updateMutBoard7(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    _x += _dx;
-    
-    if ((_x > *width) | (_x < 0)) {
-        _dx *= -1;
-    }
-    
-    fbo->begin();
-    
-    ofClear(255);
-    ofSetColor(ofColor::chocolate);
+    ofSetColor(50, 50, 50);
     ofRect(0, 0, *width,  *height);
-    ofSetColor(ofColor::burlyWood);
+    ofSetColor(ofColor::blue);
     ofCircle(_x, *height*.5, 50.0);
-    texture->loadScreenData(0, 0, *width, *height);
-    syphonServer->publishTexture(texture);
-    
-    fbo->end();
-
-}
-
-void updateMutBoard8(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
 }
 
-void updateMutBoard9(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+void ofApp::updateMutBoard3(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
+    float _x = ofGetElapsedTimeMillis()/8 % *width;
+    
+    ofSetColor(50, 50, 50);
+    ofRect(0, 0, *width,  *height);
+    ofSetColor(ofColor::blue);
+    ofCircle(_x, *height*.5, 50.0);
+    
+}
+
+void ofApp::updateMutBoard4(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+    ofSetColor(50, 50, 50);
+	ofRect(0,0,*width,*height);
+	
+    ofSetColor(0,255,0);
+	int shiftX   = (ofGetElapsedTimeMillis() / 8 ) % *width;
+	ofRect(shiftX, 0, 150*factor, 150*factor);
+
+    
+}
+
+void ofApp::updateMutBoard5(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+    ofSetColor(ofColor::gray);
+    ofRect(0, 0, *width, *height);
+    
+}
+
+void ofApp::updateMutBoard6(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+    ofSetColor(ofColor::seaGreen);
+    ofRect(0, 0, *width, *height);
+    
+}
+
+void ofApp::updateMutBoard7(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+    ofSetColor(ofColor::tomato);
+    ofRect(0, 0, *width, *height);
+    
+}
+
+void ofApp::updateMutBoard8(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+    ofSetColor(ofColor::cyan);
+    ofRect(0, 0, *width, *height);
+    
+}
+
+void ofApp::updateMutBoard9(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    
+    ofSetColor(ofColor::magenta);
+    ofRect(0, 0, *width, *height);
+
 }
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-//    mutBoard *board0 = new mutBoard(f0Long, f0Short, GL_RGBA, "F0");
-//    boards.push_back(board0);
-//    mutBoard *board1 = new mutBoard(f1Long, f1Short, GL_RGBA, "F1");
-//    boards.push_back(board1);
-//    mutBoard *board2 = new mutBoard(f2Long, f2Short, GL_RGBA, "F2");
-//    boards.push_back(board2);
-    mutBoard *board3 = new mutBoard(f3Long, f3Short, GL_RGBA, "F3");
+    mFont.loadFont("vag.ttf", 50);
+    
+    mutBoard *board0 = new mutBoard(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
+    boards.push_back(board0);
+    mutBoard *board1 = new mutBoard(f1Long, f1Short, GL_RGBA32F_ARB, "F1");
+    boards.push_back(board1);
+    mutBoard *board2 = new mutBoard(f2Long, f2Short, GL_RGBA32F_ARB, "F2");
+    boards.push_back(board2);
+    mutBoard *board3 = new mutBoard(f3Long, f3Short, GL_RGBA32F_ARB, "F3");
     boards.push_back(board3);
-//    mutBoard *board4 = new mutBoard(f4Long, f4Short, GL_RGBA, "F4");
-//    boards.push_back(board4);
-//    mutBoard *board5 = new mutBoard(f5Long, f5Short, GL_RGBA, "F5");
-//    boards.push_back(board5);
-//    mutBoard *board6 = new mutBoard(f6Long, f6Short, GL_RGBA, "F6");
-//    boards.push_back(board6);
-    mutBoard *board7 = new mutBoard(f7Long, f7Short, GL_RGBA, "F7");
+    mutBoard *board4 = new mutBoard(f4Long, f4Short, GL_RGBA32F_ARB, "F4");
+    boards.push_back(board4);
+    mutBoard *board5 = new mutBoard(f5Long, f5Short, GL_RGBA32F_ARB, "F5");
+    boards.push_back(board5);
+    mutBoard *board6 = new mutBoard(f6Long, f6Short, GL_RGBA32F_ARB, "F6");
+    boards.push_back(board6);
+    mutBoard *board7 = new mutBoard(f7Long, f7Short, GL_RGBA32F_ARB, "F7");
     boards.push_back(board7);
-//    mutBoard *board8 = new mutBoard(f8Long, f8Short, GL_RGBA, "F8");
-//    boards.push_back(board8);
-//    mutBoard *board9 = new mutBoard(f9Long, f9Short, GL_RGBA, "F9");
-//    boards.push_back(board9);
+    mutBoard *board8 = new mutBoard(f8Long, f8Short, GL_RGBA32F_ARB, "F8");
+    boards.push_back(board8);
+    mutBoard *board9 = new mutBoard(f9Long, f9Short, GL_RGBA32F_ARB, "F9");
+    boards.push_back(board9);
 }
 
 //--------------------------------------------------------------
@@ -136,6 +152,11 @@ void ofApp::update(){
     
     for (int i=0; i<boards.size(); i++) {
         mutBoard *board = boards[i];
+        
+        board->mFbo.begin();
+        
+        ofClear(255,255,255, 0);
+        
         if (board->mSyphonServerName == "F0") {
             updateMutBoard0(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
         }
@@ -166,45 +187,54 @@ void ofApp::update(){
         else if (board->mSyphonServerName == "F9") {
             updateMutBoard9(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
         }
+        
+        ofSetColor(255,122,220);
+        mFont.drawString("Bangin !!!", 100, 100);
+        
+        board->mTexture.loadScreenData(0, 0, board->mWidth, board->mHeight);
+        board->mSyphonServer.publishTexture(&board->mTexture);
+        board->mFbo.end();
+        
     }
-
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    
     for (int i=0; i<boards.size(); i++) {
         mutBoard *board = boards[i];
 //        if (board->mSyphonServerName == "F0") {
 //            board->draw(0,0);
 //        }
-//        if (board->mSyphonServerName == "F1") {
+//        else if (board->mSyphonServerName == "F1") {
 //            board->draw(0,0);
 //        }
 //        if (board->mSyphonServerName == "F2") {
 //            board->draw(0,0);
 //        }
-//        if (board->mSyphonServerName == "F3") {
-//            board->draw(0,0);
+//        else if (board->mSyphonServerName == "F3") {
+//            board->draw(0,f1Short+f2Short);
 //        }
 //        if (board->mSyphonServerName == "F4") {
 //            board->draw(0,0);
 //        }
-//        if (board->mSyphonServerName == "F5") {
+//        else if (board->mSyphonServerName == "F5") {
 //            board->draw(0,0);
 //        }
-//        if (board->mSyphonServerName == "F6") {
+//        else if (board->mSyphonServerName == "F6") {
 //            board->draw(0,0);
 //        }
-//        if (board->mSyphonServerName == "F7") {
+//        else if (board->mSyphonServerName == "F7") {
 //            board->draw(0,0);
 //        }
-//        if (board->mSyphonServerName == "F8") {
+//        else if (board->mSyphonServerName == "F8") {
 //            board->draw(0,0);
 //        }
-//        if (board->mSyphonServerName == "F9") {
+//        else if (board->mSyphonServerName == "F9") {
 //            board->draw(0,0);
 //        }
     }
+    
 }
 
 

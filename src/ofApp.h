@@ -11,14 +11,19 @@ public:
     void update();
     void draw();
     
-    vector<mutBoard*> boards;
+    void updateMutBoard0(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    void updateMutBoard1(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    void updateMutBoard2(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    void updateMutBoard3(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    void updateMutBoard4(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    void updateMutBoard5(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    void updateMutBoard6(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    void updateMutBoard7(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    void updateMutBoard8(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    void updateMutBoard9(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
     
-//    ofFbo fbo6;
-//    ofxSyphonServer syphonServer6;
-//    ofTexture texture6;
-//    
-//    ofFbo fbo7;
-//    ofxSyphonServer syphonServer7;
-//    ofTexture texture7;
+    ofTrueTypeFont mFont;
+    
+    vector<mutBoard*> boards;
 		
 };

@@ -26,9 +26,6 @@ mutBoard::~mutBoard(){
     ofLog(OF_LOG_NOTICE, "Desructor ~mutBoard was called");
 }
 
-void mutBoard::update(){
-}
-
 void mutBoard::draw(float x, float y){
     mFbo.draw(x, y);
 }

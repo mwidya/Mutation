@@ -20,7 +20,6 @@ public:
     mutBoard(int width, int height, int glFormat, string syphonServerName);
     ~mutBoard();
     
-    void update();
     void draw(float x, float y);
     
     ofTexture mTexture;
