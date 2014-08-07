@@ -201,38 +201,15 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
+    ofSetColor(255, 255, 255);
+    
     for (int i=0; i<boards.size(); i++) {
         mutBoard *board = boards[i];
-//        if (board->mSyphonServerName == "F0") {
-//            board->draw(0,0);
-//        }
-//        else if (board->mSyphonServerName == "F1") {
-//            board->draw(0,0);
-//        }
-//        if (board->mSyphonServerName == "F2") {
-//            board->draw(0,0);
-//        }
-//        else if (board->mSyphonServerName == "F3") {
-//            board->draw(0,f1Short+f2Short);
-//        }
-//        if (board->mSyphonServerName == "F4") {
-//            board->draw(0,0);
-//        }
-//        else if (board->mSyphonServerName == "F5") {
-//            board->draw(0,0);
-//        }
-//        else if (board->mSyphonServerName == "F6") {
-//            board->draw(0,0);
-//        }
-//        else if (board->mSyphonServerName == "F7") {
-//            board->draw(0,0);
-//        }
-//        else if (board->mSyphonServerName == "F8") {
-//            board->draw(0,0);
-//        }
-//        else if (board->mSyphonServerName == "F9") {
-//            board->draw(0,0);
-//        }
+        
+        if (board->mSyphonServerName == "F4") {
+            board->draw(0,0);
+        }
+
     }
     
 }
