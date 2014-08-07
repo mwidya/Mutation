@@ -21,9 +21,11 @@ public:
     void updateMutBoard7(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
     void updateMutBoard8(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
     void updateMutBoard9(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
-    
-    ofTrueTypeFont mFont;
+    void updateMutBoards(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+//    ofTrueTypeFont mFont;
     
     vector<mutBoard*> boards;
-		
+	
+	float f4_fadeAmnt;
+    
 };

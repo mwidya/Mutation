@@ -31,99 +31,94 @@ float f9Short = 1700*factor;
 
 void ofApp::updateMutBoard0(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
-    float _x = ofGetElapsedTimeMillis()/8 % *width;
-    
-    ofSetColor(50, 50, 50);
-    ofRect(0, 0, *width,  *height);
-    ofSetColor(ofColor::blue);
-    ofCircle(_x, *height*.5, 50.0);
+//    float _x = ofGetElapsedTimeMillis()/8 % *width;
+//    
+//    ofSetColor(50, 50, 50);
+//    ofRect(0, 0, *width,  *height);
+//    ofSetColor(ofColor::blue);
+//    ofCircle(_x, *height*.5, 50.0);
     
 }
 
 void ofApp::updateMutBoard1(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
-    float _x = ofGetElapsedTimeMillis()/8 % *width;
-    
-    ofSetColor(50, 50, 50);
-    ofRect(0, 0, *width, *height);
-    ofSetColor(ofColor::yellow);
-    ofCircle(_x, *height*.5, 50.0);
+//    float _x = ofGetElapsedTimeMillis()/8 % *width;
+//    
+//    ofSetColor(50, 50, 50);
+//    ofRect(0, 0, *width, *height);
+//    ofSetColor(ofColor::yellow);
+//    ofCircle(_x, *height*.5, 50.0);
 
 }
 
 void ofApp::updateMutBoard2(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
 
-    float _x = ofGetElapsedTimeMillis()/8 % *width;
-    
-    ofSetColor(50, 50, 50);
-    ofRect(0, 0, *width,  *height);
-    ofSetColor(ofColor::blue);
-    ofCircle(_x, *height*.5, 50.0);
+//    float _x = ofGetElapsedTimeMillis()/8 % *width;
+//    
+//    ofSetColor(50, 50, 50);
+//    ofRect(0, 0, *width,  *height);
+//    ofSetColor(ofColor::blue);
+//    ofCircle(_x, *height*.5, 50.0);
     
 }
 
 void ofApp::updateMutBoard3(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
-    float _x = ofGetElapsedTimeMillis()/8 % *width;
-    
-    ofSetColor(50, 50, 50);
-    ofRect(0, 0, *width,  *height);
-    ofSetColor(ofColor::blue);
-    ofCircle(_x, *height*.5, 50.0);
+//    float _x = ofGetElapsedTimeMillis()/8 % *width;
+//    
+//    ofSetColor(50, 50, 50);
+//    ofRect(0, 0, *width,  *height);
+//    ofSetColor(ofColor::blue);
+//    ofCircle(_x, *height*.5, 50.0);
     
 }
 
 void ofApp::updateMutBoard4(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
-    ofSetColor(50, 50, 50);
-	ofRect(0,0,*width,*height);
-	
-    ofSetColor(0,255,0);
-	int shiftX   = (ofGetElapsedTimeMillis() / 8 ) % *width;
-	ofRect(shiftX, 0, 150*factor, 150*factor);
-
+    //    ofSetColor(ofColor::gray);
+    //    ofRect(0, 0, *width, *height);
     
 }
 
 void ofApp::updateMutBoard5(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
-    ofSetColor(ofColor::gray);
-    ofRect(0, 0, *width, *height);
+//    ofSetColor(ofColor::gray);
+//    ofRect(0, 0, *width, *height);
     
 }
 
 void ofApp::updateMutBoard6(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
-    ofSetColor(ofColor::seaGreen);
-    ofRect(0, 0, *width, *height);
+//    ofSetColor(ofColor::seaGreen);
+//    ofRect(0, 0, *width, *height);
     
 }
 
 void ofApp::updateMutBoard7(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
-    ofSetColor(ofColor::tomato);
-    ofRect(0, 0, *width, *height);
+//    ofSetColor(ofColor::tomato);
+//    ofRect(0, 0, *width, *height);
     
 }
 
 void ofApp::updateMutBoard8(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
-    ofSetColor(ofColor::cyan);
-    ofRect(0, 0, *width, *height);
+//    ofSetColor(ofColor::cyan);
+//    ofRect(0, 0, *width, *height);
     
 }
 
 void ofApp::updateMutBoard9(int *width, int *height, ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     
-    ofSetColor(ofColor::magenta);
-    ofRect(0, 0, *width, *height);
+//    ofSetColor(ofColor::magenta);
+//    ofRect(0, 0, *width, *height);
 
 }
 
 //--------------------------------------------------------------
 void ofApp::setup(){
     
-    mFont.loadFont("vag.ttf", 50);
+//    mFont.loadFont("vag.ttf", 50);
     
     mutBoard *board0 = new mutBoard(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
     boards.push_back(board0);
@@ -147,6 +142,24 @@ void ofApp::setup(){
     boards.push_back(board9);
 }
 
+void ofApp::updateMutBoards(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo)
+{
+    float width = fbo->getWidth();
+    float height = fbo->getHeight();
+    
+    f4_fadeAmnt = 5;
+    
+    ofSetColor(150, 150, 150, f4_fadeAmnt);
+    ofRect(0, 0, width, height);
+    
+    int speed = 8;
+    
+    int shiftX   = (ofGetElapsedTimeMillis() / speed ) % (int)width;
+    
+    ofSetColor(0,255,0);
+    ofRect(shiftX, 0, 150*factor, 150*factor);
+}
+
 //--------------------------------------------------------------
 void ofApp::update(){
     
@@ -154,8 +167,6 @@ void ofApp::update(){
         mutBoard *board = boards[i];
         
         board->mFbo.begin();
-        
-        ofClear(255,255,255, 0);
         
         if (board->mSyphonServerName == "F0") {
             updateMutBoard0(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
@@ -188,8 +199,7 @@ void ofApp::update(){
             updateMutBoard9(&board->mWidth, &board->mHeight, &board->mSyphonServer, &board->mTexture, &board->mFbo);
         }
         
-        ofSetColor(255,122,220);
-        mFont.drawString("Bangin !!!", 100, 100);
+        updateMutBoards(&board->mSyphonServer, &board->mTexture, &board->mFbo);
         
         board->mTexture.loadScreenData(0, 0, board->mWidth, board->mHeight);
         board->mSyphonServer.publishTexture(&board->mTexture);
@@ -201,6 +211,10 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
     
+    
+    ofClear(30, 30, 30);
+    
+    // draw fbo without color modulation
     ofSetColor(255, 255, 255);
     
     for (int i=0; i<boards.size(); i++) {

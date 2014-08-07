@@ -20,6 +20,10 @@ mutBoard::mutBoard(int width, int height, int glFormat, string syphonServerName)
     mTexture.allocate(mWidth, mHeight, mGlFormat);
     mFbo.allocate(mWidth, mHeight, mGlFormat);
     
+    mFbo.begin();
+    ofClear(255, 255, 255);
+    mFbo.end();
+    
 }
 
 mutBoard::~mutBoard(){
