@@ -10,9 +10,12 @@ public:
     void setup();
     void update();
     void draw();
+    void setArrayTrueOnlyAtIndex(int _i);
     void keyPressed(int key);
     
-    void updateMutBoards(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    void updateChessboard1(ofFbo *fbo);
+    
+    void updateAllMutBoards(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
     void updateMutBoard0(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
     void updateMutBoard1(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
     void updateMutBoard2(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
@@ -36,6 +39,9 @@ public:
     mutBoard *board7;
     mutBoard *board8;
     mutBoard *board9;
+    
+    int numberofBoards = 10;
+    bool *playArray;
 	
     // ------------------ all boards ----------------
     

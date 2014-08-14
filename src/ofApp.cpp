@@ -29,31 +29,14 @@ float f8Short = 1700*factor;
 float f9Long = 4300*factor;
 float f9Short = 1700*factor;
 
-void ofApp::updateMutBoards(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    float width = fbo->getWidth();
-    float height = fbo->getHeight();
-    
-    f4_fadeAmnt = 3;
-    
-    ofSetColor(150, 150, 150, f4_fadeAmnt);
-    ofRect(0, 0, width, height);
-    
-    int speed = 8;
-    
-    int shiftX   = (ofGetElapsedTimeMillis() / speed ) % (int)width;
-    
-    ofSetColor(0,255,0);
-    ofRect(shiftX, 0, 150*factor, 150*factor);
-}
-
-void ofApp::updateMutBoard0(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+void ofApp::updateChessboard1(ofFbo *fbo){
     ofSoundUpdate();
-	float * val = ofSoundGetSpectrum(nBandsToGet);
-	for (int i = 0;i < nBandsToGet; i++){
-		fftSmoothed[i] *= 0.96f;
-		if (fftSmoothed[i] < val[i]) fftSmoothed[i] = val[i];
-		
-	}
+    float * val = ofSoundGetSpectrum(nBandsToGet);
+    for (int i = 0;i < nBandsToGet; i++){
+        fftSmoothed[i] *= 0.96f;
+        if (fftSmoothed[i] < val[i]) fftSmoothed[i] = val[i];
+        
+    }
     
     float band0 = fftSmoothed[1]*fbo->getWidth()/25.0;
     if (band0 > rectSizeMin) {
@@ -74,11 +57,52 @@ void ofApp::updateMutBoard0(ofxSyphonServer *syphonServer, ofTexture *texture, o
     ofRect(0, stroke, band12, stroke);
     
     ofSetColor(0, 0, 255, 100);
-    ofRect(fbo->getHeight()-band38, fbo->getHeight() - stroke * 2, band38, stroke);
+    ofRect(fbo->getWidth()-band38, fbo->getHeight() - stroke * 2, band38, stroke);
+    
+}
+
+void ofApp::updateAllMutBoards(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    if (playAll==true) {
+    
+        float width = fbo->getWidth();
+        float height = fbo->getHeight();
+        
+        f4_fadeAmnt = 3;
+        
+        ofSetColor(150, 150, 150, f4_fadeAmnt);
+        ofRect(0, 0, width, height);
+        
+        int speed = 8;
+        
+        int shiftX   = (ofGetElapsedTimeMillis() / speed ) % (int)width;
+        
+        ofSetColor(0,255,0);
+        ofRect(shiftX, 0, 150*factor, 150*factor);
+    }else{
+//        ofBackground(0, 0, 0);
+    }
+}
+
+void ofApp::updateMutBoard0(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    if (playArray[0]) {
+        ofLogNotice("playArray[0] = true");
+        updateChessboard1(fbo);
+    }else{
+        ofLogNotice("playArray[0] = false");
+        ofClear(0, 0, 0);
+    }
+    
     
 }
 
 void ofApp::updateMutBoard1(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
+    if (playArray[1]) {
+        ofLogNotice("playArray[0] = true");
+        updateChessboard1(fbo);
+    }else{
+        ofLogNotice("playArray[0] = false");
+        ofClear(0, 0, 0);
+    }
     
 //    float _x = ofGetElapsedTimeMillis()/8 % *width;
 //    
@@ -155,6 +179,8 @@ void ofApp::updateMutBoard9(ofxSyphonServer *syphonServer, ofTexture *texture, o
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
+    playArray = new bool[numberofBoards];
     
 //    mFont.loadFont("vag.ttf", 50);
     
@@ -234,13 +260,9 @@ void ofApp::update(){
         else if (board->mSyphonServerName == "F9") {
             updateMutBoard9(&board->mSyphonServer, &board->mTexture, &board->mFbo);
         }
-    
-        if (playAll==true) {
-            updateMutBoards(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }else{
-            
-        }
         
+        updateAllMutBoards(&board->mSyphonServer, &board->mTexture, &board->mFbo);
+
         board->mTexture.loadScreenData(0, 0, board->mWidth, board->mHeight);
         board->mSyphonServer.publishTexture(&board->mTexture);
         board->mFbo.end();
@@ -267,11 +289,27 @@ void ofApp::draw(){
     
 }
 
+void ofApp::setArrayTrueOnlyAtIndex(int index){
+    for (int i = 0; i < numberofBoards; i++) {
+        if (i==index) {
+            playArray[index]=true;
+        }else{
+            playArray[i]=false;
+        }
+    }
+    
+}
+
 void ofApp::keyPressed(int key){
+    if (key=='0') {
+        setArrayTrueOnlyAtIndex(0);
+    }else if(key=='1'){
+        setArrayTrueOnlyAtIndex(1);
+    }
+    
     if(key=='a'){
         playAll = !playAll;
-    }
-    else if (key == 32) {
+    }else if (key == ' ') {
         if (!soundIsPlaying) {
             soundPlayer.play();
         }else{
@@ -279,6 +317,7 @@ void ofApp::keyPressed(int key){
         }
         soundIsPlaying = !soundIsPlaying;
     }
+    
 }
 
 
