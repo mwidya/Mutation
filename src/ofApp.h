@@ -11,6 +11,8 @@ public:
     void update();
     void draw();
     void setArrayTrueOnlyAtIndex(int _i);
+    void setArrayTrue();
+    void setArrayFalse();
     void keyPressed(int key);
     
     void updateChessboard1(ofFbo *fbo);
