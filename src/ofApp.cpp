@@ -29,7 +29,6 @@ float f8Short = 1700*factor;
 float f9Long = 4300*factor;
 float f9Short = 1700*factor;
 
-
 void ofApp::updateMutBoards(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
     float width = fbo->getWidth();
     float height = fbo->getHeight();
@@ -154,7 +153,6 @@ void ofApp::updateMutBoard9(ofxSyphonServer *syphonServer, ofTexture *texture, o
 
 }
 
-//--------------------------------------------------------------
 void ofApp::setup(){
     
 //    mFont.loadFont("vag.ttf", 50);
@@ -197,7 +195,6 @@ void ofApp::setup(){
     boards.push_back(board9);
 }
 
-//--------------------------------------------------------------
 void ofApp::update(){
     
     for (int i=0; i<boards.size(); i++) {
@@ -235,9 +232,7 @@ void ofApp::update(){
         else if (board->mSyphonServerName == "F9") {
             updateMutBoard9(&board->mSyphonServer, &board->mTexture, &board->mFbo);
         }
-        
-        
-        
+    
         if (playAll==true) {
             updateMutBoards(&board->mSyphonServer, &board->mTexture, &board->mFbo);
         }else{
@@ -251,7 +246,6 @@ void ofApp::update(){
     }
 }
 
-//--------------------------------------------------------------
 void ofApp::draw(){
     
     
