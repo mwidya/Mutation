@@ -26,6 +26,16 @@ public:
 //    ofTrueTypeFont mFont;
     
     vector<mutBoard*> boards;
+    mutBoard *board0;
+    mutBoard *board1;
+    mutBoard *board2;
+    mutBoard *board3;
+    mutBoard *board4;
+    mutBoard *board5;
+    mutBoard *board6;
+    mutBoard *board7;
+    mutBoard *board8;
+    mutBoard *board9;
 	
     // ------------------ all boards ----------------
     

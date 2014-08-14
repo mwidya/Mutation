@@ -153,13 +153,14 @@ void ofApp::updateMutBoard9(ofxSyphonServer *syphonServer, ofTexture *texture, o
 
 }
 
+//--------------------------------------------------------------
 void ofApp::setup(){
     
 //    mFont.loadFont("vag.ttf", 50);
     
     // ------------------ f0 ------------------
     
-    mutBoard *board0 = new mutBoard(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
+    board0 = new mutBoard(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
     boards.push_back(board0);
     
     rectSize = rectSizeMin;
@@ -175,26 +176,27 @@ void ofApp::setup(){
     
     // ------------------ f1 ------------------
     
-    mutBoard *board1 = new mutBoard(f1Long, f1Short, GL_RGBA32F_ARB, "F1");
+    board1 = new mutBoard(f1Long, f1Short, GL_RGBA32F_ARB, "F1");
     boards.push_back(board1);
-    mutBoard *board2 = new mutBoard(f2Long, f2Short, GL_RGBA32F_ARB, "F2");
+    board2 = new mutBoard(f2Long, f2Short, GL_RGBA32F_ARB, "F2");
     boards.push_back(board2);
-    mutBoard *board3 = new mutBoard(f3Long, f3Short, GL_RGBA32F_ARB, "F3");
+    board3 = new mutBoard(f3Long, f3Short, GL_RGBA32F_ARB, "F3");
     boards.push_back(board3);
-    mutBoard *board4 = new mutBoard(f4Long, f4Short, GL_RGBA32F_ARB, "F4");
+    board4 = new mutBoard(f4Long, f4Short, GL_RGBA32F_ARB, "F4");
     boards.push_back(board4);
-    mutBoard *board5 = new mutBoard(f5Long, f5Short, GL_RGBA32F_ARB, "F5");
+    board5 = new mutBoard(f5Long, f5Short, GL_RGBA32F_ARB, "F5");
     boards.push_back(board5);
-    mutBoard *board6 = new mutBoard(f6Long, f6Short, GL_RGBA32F_ARB, "F6");
+    board6 = new mutBoard(f6Long, f6Short, GL_RGBA32F_ARB, "F6");
     boards.push_back(board6);
-    mutBoard *board7 = new mutBoard(f7Long, f7Short, GL_RGBA32F_ARB, "F7");
+    board7 = new mutBoard(f7Long, f7Short, GL_RGBA32F_ARB, "F7");
     boards.push_back(board7);
-    mutBoard *board8 = new mutBoard(f8Long, f8Short, GL_RGBA32F_ARB, "F8");
+    board8 = new mutBoard(f8Long, f8Short, GL_RGBA32F_ARB, "F8");
     boards.push_back(board8);
-    mutBoard *board9 = new mutBoard(f9Long, f9Short, GL_RGBA32F_ARB, "F9");
+    board9 = new mutBoard(f9Long, f9Short, GL_RGBA32F_ARB, "F9");
     boards.push_back(board9);
 }
 
+//--------------------------------------------------------------
 void ofApp::update(){
     
     for (int i=0; i<boards.size(); i++) {
@@ -272,11 +274,10 @@ void ofApp::keyPressed(int key){
     else if (key == 32) {
         if (!soundIsPlaying) {
             soundPlayer.play();
-            soundIsPlaying = true;
         }else{
             soundPlayer.stop();
-            soundIsPlaying = false;
         }
+        soundIsPlaying = !soundIsPlaying;
     }
 }
 
