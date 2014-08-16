@@ -30,8 +30,16 @@ float f9Long = 4300*factor;
 float f9Short = 1700*factor;
 
 void ofApp::playBoards(ofFbo *fbo){
-//    chessboard1(fbo);
-    movingFrames(fbo);
+    if (boardsArray[0]==true) {
+        chessboard1(fbo);
+    }else if (boardsArray[1]==true) {
+        movingFrames(fbo);
+    }else if (boardsArray[2]==true) {
+        testBoard(fbo);
+    }else if (boardsArray[3]==true) {
+        oneColor(fbo);
+    }
+    
 }
 
 // ------------------------------------ Boards ------------------------------------
@@ -187,6 +195,16 @@ void ofApp::updateMutBoard9(ofxSyphonServer *syphonServer, ofTexture *texture, o
 
 // ------------------------------------ Channel controlling ------------------------------------
 
+void ofApp::setBoardsArrayTrueOnlyAtIndex(int index){
+    for (int i = 0; i < numberofBoards; i++) {
+        if (i==index) {
+            boardsArray[index]=true;
+        }else{
+            boardsArray[i]=false;
+        }
+    }
+}
+
 void ofApp::setServerArrayTrueOnlyAtIndex(int index){
     for (int i = 0; i < numberofServers; i++) {
         if (i==index) {
@@ -214,6 +232,7 @@ void ofApp::setServerArrayFalse(){
 void ofApp::setup(){
     
     serverArray = new bool[numberofServers];
+    boardsArray = new bool[numberofBoards];
     
     soundPlayer.loadSound("music/testPattern.mp3");
     fftSmoothed = new float[8192];
@@ -329,14 +348,14 @@ void ofApp::keyPressed(int key){
     }
     
     if (key=='a') {
-        setServerArrayTrueOnlyAtIndex(0);
+        setBoardsArrayTrueOnlyAtIndex(0);
     }else if(key=='b'){
-        setServerArrayTrueOnlyAtIndex(1);
+        setBoardsArrayTrueOnlyAtIndex(1);
     }else if(key=='c'){
-        setServerArrayTrueOnlyAtIndex(2);
+        setBoardsArrayTrueOnlyAtIndex(2);
     }else if(key=='d'){
-        setServerArrayTrueOnlyAtIndex(3);
-    }else if(key=='e'){
+        setBoardsArrayTrueOnlyAtIndex(3);
+    }/*else if(key=='e'){
         setServerArrayTrueOnlyAtIndex(4);
     }else if(key=='f'){
         setServerArrayTrueOnlyAtIndex(5);
@@ -348,9 +367,9 @@ void ofApp::keyPressed(int key){
         setServerArrayTrueOnlyAtIndex(8);
     }else if(key=='j'){
         setServerArrayTrueOnlyAtIndex(9);
-    }
+    }*/
     
-    if(key=='z'){
+    if(key=='q'){
         playAll = !playAll;
         if (playAll) {
             setServerArrayTrue();
@@ -359,7 +378,7 @@ void ofApp::keyPressed(int key){
         }
     }
     
-    if (key == ' ') {
+    if (key == 's') {
         if (!soundIsPlaying) {
             soundPlayer.play();
         }else{

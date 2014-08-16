@@ -12,7 +12,8 @@ public:
     void draw();
     void keyPressed(int key);
     
-    void setServerArrayTrueOnlyAtIndex(int _i);
+    void setBoardsArrayTrueOnlyAtIndex(int index);
+    void setServerArrayTrueOnlyAtIndex(int index);
     void setServerArrayTrue();
     void setServerArrayFalse();
     
@@ -49,7 +50,7 @@ public:
     int numberofServers = 10;
     bool *serverArray;
     int numberofBoards = 4;
-    bool *boardArray;
+    bool *boardsArray;
 	
     // ------------------ moving frames ------------------
     
