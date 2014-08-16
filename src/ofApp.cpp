@@ -29,7 +29,14 @@ float f8Short = 1700*factor;
 float f9Long = 4300*factor;
 float f9Short = 1700*factor;
 
-void ofApp::updateChessboard1(ofFbo *fbo){
+void ofApp::playBoards(ofFbo *fbo){
+//    chessboard1(fbo);
+    movingFrames(fbo);
+}
+
+// ------------------------------------ Boards ------------------------------------
+
+void ofApp::chessboard1(ofFbo *fbo){
     ofSoundUpdate();
     float * val = ofSoundGetSpectrum(nBandsToGet);
     for (int i = 0;i < nBandsToGet; i++){
@@ -58,183 +65,165 @@ void ofApp::updateChessboard1(ofFbo *fbo){
     
     ofSetColor(0, 0, 255, 100);
     ofRect(fbo->getWidth()-band38, fbo->getHeight() - stroke * 2, band38, stroke);
+}
+
+void ofApp::movingFrames(ofFbo *fbo){
+    
+    float width = fbo->getWidth();
+    float height = fbo->getHeight();
+    
+    f4_fadeAmnt = 3;
+    
+    ofSetColor(150, 150, 150, f4_fadeAmnt);
+    ofRect(0, 0, width, height);
+    
+    int speed = 8;
+    
+    int shiftX   = (ofGetElapsedTimeMillis() / speed ) % (int)width;
+    
+    ofSetColor(0,255,0);
+    ofRect(shiftX, 0, 150*factor, 150*factor);
     
 }
 
-void ofApp::updateAllMutBoards(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playAll==true) {
+void ofApp::testBoard(ofFbo *fbo){
+    float _x = ofGetElapsedTimeMillis()/8 % (int)fbo->getWidth();
     
-        float width = fbo->getWidth();
-        float height = fbo->getHeight();
-        
-        f4_fadeAmnt = 3;
-        
-        ofSetColor(150, 150, 150, f4_fadeAmnt);
-        ofRect(0, 0, width, height);
-        
-        int speed = 8;
-        
-        int shiftX   = (ofGetElapsedTimeMillis() / speed ) % (int)width;
-        
-        ofSetColor(0,255,0);
-        ofRect(shiftX, 0, 150*factor, 150*factor);
-    }else{
-//        ofBackground(0, 0, 0);
-    }
+    ofSetColor(50, 50, 50);
+    ofRect(0, 0, fbo->getWidth(), fbo->getHeight());
+    ofSetColor(ofColor::yellow);
+    ofCircle(_x, fbo->getHeight()*.5, 50.0);
+
 }
+
+void ofApp::oneColor(ofFbo *fbo){
+    ofSetColor(ofColor::gray);
+    ofRect(0, 0, fbo->getWidth(), fbo->getHeight());
+    
+}
+
+// ------------------------------------ Syphon Servers ------------------------------------
 
 void ofApp::updateMutBoard0(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playArray[0]) {
-        updateChessboard1(fbo);
+    if (serverArray[0]) {
+        playBoards(fbo);
     }else{
         ofClear(0, 0, 0);
     }
 }
 
 void ofApp::updateMutBoard1(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playArray[1]) {
-        updateChessboard1(fbo);
+    if (serverArray[1]) {
+        playBoards(fbo);
     }else{
         ofClear(0, 0, 0);
     }
-    
-//    float _x = ofGetElapsedTimeMillis()/8 % *width;
-//    
-//    ofSetColor(50, 50, 50);
-//    ofRect(0, 0, *width, *height);
-//    ofSetColor(ofColor::yellow);
-//    ofCircle(_x, *height*.5, 50.0);
-
 }
 
 void ofApp::updateMutBoard2(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playArray[2]) {
-        updateChessboard1(fbo);
+    if (serverArray[2]) {
+        playBoards(fbo);
     }else{
         ofClear(0, 0, 0);
     }
-//    float _x = ofGetElapsedTimeMillis()/8 % *width;
-//    
-//    ofSetColor(50, 50, 50);
-//    ofRect(0, 0, *width,  *height);
-//    ofSetColor(ofColor::blue);
-//    ofCircle(_x, *height*.5, 50.0);
-    
 }
 
 void ofApp::updateMutBoard3(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playArray[3]) {
-        updateChessboard1(fbo);
+    if (serverArray[3]) {
+        playBoards(fbo);
     }else{
         ofClear(0, 0, 0);
     }
-    
-//    float _x = ofGetElapsedTimeMillis()/8 % *width;
-//    
-//    ofSetColor(50, 50, 50);
-//    ofRect(0, 0, *width,  *height);
-//    ofSetColor(ofColor::blue);
-//    ofCircle(_x, *height*.5, 50.0);
-    
 }
 
 void ofApp::updateMutBoard4(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playArray[4]) {
-        updateChessboard1(fbo);
+    if (serverArray[4]) {
+        playBoards(fbo);
     }else{
         ofClear(0, 0, 0);
     }
-    
-    //    ofSetColor(ofColor::gray);
-    //    ofRect(0, 0, *width, *height);
-    
 }
 
 void ofApp::updateMutBoard5(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playArray[5]) {
-        updateChessboard1(fbo);
+    if (serverArray[5]) {
+        playBoards(fbo);
     }else{
         ofClear(0, 0, 0);
     }
-    
-//    ofSetColor(ofColor::gray);
-//    ofRect(0, 0, *width, *height);
     
 }
 
 void ofApp::updateMutBoard6(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playArray[6]) {
-        updateChessboard1(fbo);
+    if (serverArray[6]) {
+        playBoards(fbo);
     }else{
         ofClear(0, 0, 0);
     }
-    
-//    ofSetColor(ofColor::seaGreen);
-//    ofRect(0, 0, *width, *height);
-    
 }
 
 void ofApp::updateMutBoard7(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playArray[7]) {
-        updateChessboard1(fbo);
+    if (serverArray[7]) {
+        playBoards(fbo);
     }else{
         ofClear(0, 0, 0);
     }
-    
-//    ofSetColor(ofColor::tomato);
-//    ofRect(0, 0, *width, *height);
-    
 }
 
 void ofApp::updateMutBoard8(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playArray[8]) {
-        updateChessboard1(fbo);
+    if (serverArray[8]) {
+        playBoards(fbo);
     }else{
         ofClear(0, 0, 0);
     }
-    
-//    ofSetColor(ofColor::cyan);
-//    ofRect(0, 0, *width, *height);
-    
 }
 
 void ofApp::updateMutBoard9(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (playArray[9]) {
-        updateChessboard1(fbo);
+    if (serverArray[9]) {
+        playBoards(fbo);
     }else{
         ofClear(0, 0, 0);
     }
-    
-//    ofSetColor(ofColor::magenta);
-//    ofRect(0, 0, *width, *height);
-
 }
 
-//--------------------------------------------------------------
+// ------------------------------------ Channel controlling ------------------------------------
+
+void ofApp::setServerArrayTrueOnlyAtIndex(int index){
+    for (int i = 0; i < numberofServers; i++) {
+        if (i==index) {
+            serverArray[index]=true;
+        }else{
+            serverArray[i]=false;
+        }
+    }
+}
+
+void ofApp::setServerArrayTrue(){
+    for (int i = 0; i < numberofServers; i++) {
+        serverArray[i]=true;
+    }
+}
+
+void ofApp::setServerArrayFalse(){
+    for (int i = 0; i < numberofServers; i++) {
+        serverArray[i]=false;
+    }
+}
+
+// ------------------------------------ of Lifecycle ------------------------------------
+
 void ofApp::setup(){
     
-    playArray = new bool[numberofBoards];
-    
-//    mFont.loadFont("vag.ttf", 50);
-    
-    // ------------------ f0 ------------------
-    
-    board0 = new mutBoard(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
-    boards.push_back(board0);
-    
-    rectSize = rectSizeMin;
-    gray = whiteMax;
+    serverArray = new bool[numberofServers];
     
     soundPlayer.loadSound("music/testPattern.mp3");
     fftSmoothed = new float[8192];
 	for (int i = 0; i < 8192; i++){
 		fftSmoothed[i] = 0;
 	}
-	
 	nBandsToGet = 64;
     
-    // ------------------ f1 ------------------
-    
+    board0 = new mutBoard(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
+    boards.push_back(board0);
     board1 = new mutBoard(f1Long, f1Short, GL_RGBA32F_ARB, "F1");
     boards.push_back(board1);
     board2 = new mutBoard(f2Long, f2Short, GL_RGBA32F_ARB, "F2");
@@ -255,7 +244,6 @@ void ofApp::setup(){
     boards.push_back(board9);
 }
 
-//--------------------------------------------------------------
 void ofApp::update(){
     
     for (int i=0; i<boards.size(); i++) {
@@ -293,8 +281,6 @@ void ofApp::update(){
         else if (board->mSyphonServerName == "F9") {
             updateMutBoard9(&board->mSyphonServer, &board->mTexture, &board->mFbo);
         }
-        
-//        updateAllMutBoards(&board->mSyphonServer, &board->mTexture, &board->mFbo);
 
         board->mTexture.loadScreenData(0, 0, board->mWidth, board->mHeight);
         board->mSyphonServer.publishTexture(&board->mTexture);
@@ -304,75 +290,72 @@ void ofApp::update(){
 }
 
 void ofApp::draw(){
-    
-    
+
     ofClear(30, 30, 30);
     
-    // draw fbo without color modulation
-    ofSetColor(255, 255, 255);
+    ofSetColor(255, 255, 255);    // draw fbo without color modulation
     
     for (int i=0; i<boards.size(); i++) {
         mutBoard *board = boards[i];
         
         if (board->mSyphonServerName == "F0") {
-            board->draw(0,0);
+//            board->draw(0,0);
         }
-
     }
     
-}
-
-void ofApp::setArrayTrueOnlyAtIndex(int index){
-    for (int i = 0; i < numberofBoards; i++) {
-        if (i==index) {
-            playArray[index]=true;
-        }else{
-            playArray[i]=false;
-        }
-    }
-}
-
-void ofApp::setArrayTrue(){
-    for (int i = 0; i < numberofBoards; i++) {
-        playArray[i]=true;
-    }
-}
-
-void ofApp::setArrayFalse(){
-    for (int i = 0; i < numberofBoards; i++) {
-        playArray[i]=false;
-    }
 }
 
 void ofApp::keyPressed(int key){
     if (key=='0') {
-        setArrayTrueOnlyAtIndex(0);
+        setServerArrayTrueOnlyAtIndex(0);
     }else if(key=='1'){
-        setArrayTrueOnlyAtIndex(1);
+        setServerArrayTrueOnlyAtIndex(1);
     }else if(key=='2'){
-        setArrayTrueOnlyAtIndex(2);
+        setServerArrayTrueOnlyAtIndex(2);
     }else if(key=='3'){
-        setArrayTrueOnlyAtIndex(3);
+        setServerArrayTrueOnlyAtIndex(3);
     }else if(key=='4'){
-        setArrayTrueOnlyAtIndex(4);
+        setServerArrayTrueOnlyAtIndex(4);
     }else if(key=='5'){
-        setArrayTrueOnlyAtIndex(5);
+        setServerArrayTrueOnlyAtIndex(5);
     }else if(key=='6'){
-        setArrayTrueOnlyAtIndex(6);
+        setServerArrayTrueOnlyAtIndex(6);
     }else if(key=='7'){
-        setArrayTrueOnlyAtIndex(7);
+        setServerArrayTrueOnlyAtIndex(7);
     }else if(key=='8'){
-        setArrayTrueOnlyAtIndex(8);
+        setServerArrayTrueOnlyAtIndex(8);
     }else if(key=='9'){
-        setArrayTrueOnlyAtIndex(9);
+        setServerArrayTrueOnlyAtIndex(9);
     }
     
-    if(key=='a'){
+    if (key=='a') {
+        setServerArrayTrueOnlyAtIndex(0);
+    }else if(key=='b'){
+        setServerArrayTrueOnlyAtIndex(1);
+    }else if(key=='c'){
+        setServerArrayTrueOnlyAtIndex(2);
+    }else if(key=='d'){
+        setServerArrayTrueOnlyAtIndex(3);
+    }else if(key=='e'){
+        setServerArrayTrueOnlyAtIndex(4);
+    }else if(key=='f'){
+        setServerArrayTrueOnlyAtIndex(5);
+    }else if(key=='g'){
+        setServerArrayTrueOnlyAtIndex(6);
+    }else if(key=='h'){
+        setServerArrayTrueOnlyAtIndex(7);
+    }else if(key=='i'){
+        setServerArrayTrueOnlyAtIndex(8);
+    }else if(key=='j'){
+        setServerArrayTrueOnlyAtIndex(9);
+    }
+    
+    if(key=='z'){
         playAll = !playAll;
         if (playAll) {
-            setArrayTrue();
+            setServerArrayTrue();
         }else{
-            setArrayFalse();
+            setServerArrayFalse();
         }
     }
     
