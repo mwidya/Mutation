@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-//#include "ofxSyphon.h"
 #include "channel.h"
 #include "movingFrameBoard.h"
 

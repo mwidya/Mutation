@@ -12,6 +12,7 @@
 #include <iostream>
 #include "ofMain.h"
 
+
 class movingFrameBoard{
     
 public:
@@ -19,9 +20,14 @@ public:
     void play();
     
 private:
-    float mShiftX, mShiftY, mFadeAmnt;
-    float mSpeed = 0.2;
+    float mShiftX = 0.0f;
+    float mShiftY = 0.0f;
+    float mFadeAmnt = 1.5;
+    float mSpeed = 8.0f;
+    // TODO How to include constants.h
+    float stroke = 15.0f;
     int mDirectionX = 1;
+    int mDirectionY = 0;
     ofFbo *mFbo;
     
 };
