@@ -33,7 +33,7 @@ void ofApp::playBoards(ofFbo *fbo){
     if (boardsArray[0]==true) {
         chessboard1(fbo);
     }else if (boardsArray[1]==true) {
-        mMovingFrameBoard.play(fbo);
+//        mMovingFrameBoard.play(fbo);
     }else if (boardsArray[2]==true) {
         testBoard(fbo);
     }else if (boardsArray[3]==true) {
@@ -115,7 +115,8 @@ void ofApp::updateChannel(channel *channel, int index){
     channel->mFbo.begin();
     
     if (channelsArray[index]) {
-        playBoards(&channel->mFbo);
+//        playBoards(&channel->mFbo);
+        movingFrameBoards[index]->play();
     }else{
         ofClear(0, 0, 0);
     }
@@ -201,7 +202,12 @@ void ofApp::setup(){
     setupArrays();
     setupChannels();
     
-    mMovingFrameBoard = *new class movingFrameBoard();
+    for (int i = 0; i < channels.size(); i++) {
+        channel *channel = channels[i];
+        movingFrameBoard *mfb = new movingFrameBoard(&channel->mFbo);
+        movingFrameBoards.push_back(mfb);
+    }
+    
     
     mFont.loadFont("vag.ttf", 50);
     

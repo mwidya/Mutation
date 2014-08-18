@@ -15,14 +15,14 @@
 class movingFrameBoard{
     
 public:
-    movingFrameBoard();
-    void play(ofFbo *fbo);
+    movingFrameBoard(ofFbo *fbo);
+    void play();
     
 private:
-    float shiftX, shiftY, f4_fadeAmnt;
-    float speed = 0.2;
-    int directionX = 1;
-    ofFbo *fbo;
+    float mShiftX, mShiftY, mFadeAmnt;
+    float mSpeed = 0.2;
+    int mDirectionX = 1;
+    ofFbo *mFbo;
     
 };
 

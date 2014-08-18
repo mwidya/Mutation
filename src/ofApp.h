@@ -18,8 +18,6 @@ public:
     void testBoard(ofFbo *fbo);
     void oneColor(ofFbo *fbo);
     
-    movingFrameBoard mMovingFrameBoard;
-    
     // ------------------------------------ Channels ------------------------------------
     
     void updateChannel(channel *channel, int index);
@@ -65,6 +63,8 @@ public:
     bool playAll;
 	
     ofTrueTypeFont mFont;
+    
+    vector<movingFrameBoard*> movingFrameBoards;
     
     /*// ------------------ moving frames ------------------
     // TODO vars has to be instantiated in an object
