@@ -33,7 +33,7 @@ void ofApp::playBoards(ofFbo *fbo){
     if (boardsArray[0]==true) {
         chessboard1(fbo);
     }else if (boardsArray[1]==true) {
-        movingFrames(fbo);
+        mMovingFrameBoard.play(fbo);
     }else if (boardsArray[2]==true) {
         testBoard(fbo);
     }else if (boardsArray[3]==true) {
@@ -108,87 +108,22 @@ void ofApp::oneColor(ofFbo *fbo){
     
 }
 
-// ------------------------------------ Syphon Servers ------------------------------------
+// ------------------------------------ Channels ------------------------------------
 
-void ofApp::updateMutBoard0(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (serverArray[0]) {
-        playBoards(fbo);
-    }else{
-        ofClear(0, 0, 0);
-    }
-}
-
-void ofApp::updateMutBoard1(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (serverArray[1]) {
-        playBoards(fbo);
-    }else{
-        ofClear(0, 0, 0);
-    }
-}
-
-void ofApp::updateMutBoard2(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (serverArray[2]) {
-        playBoards(fbo);
-    }else{
-        ofClear(0, 0, 0);
-    }
-}
-
-void ofApp::updateMutBoard3(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (serverArray[3]) {
-        playBoards(fbo);
-    }else{
-        ofClear(0, 0, 0);
-    }
-}
-
-void ofApp::updateMutBoard4(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (serverArray[4]) {
-        playBoards(fbo);
-    }else{
-        ofClear(0, 0, 0);
-    }
-}
-
-void ofApp::updateMutBoard5(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (serverArray[5]) {
-        playBoards(fbo);
-    }else{
-        ofClear(0, 0, 0);
-    }
+void ofApp::updateChannel(channel *channel, int index){
     
-}
-
-void ofApp::updateMutBoard6(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (serverArray[6]) {
-        playBoards(fbo);
+    channel->mFbo.begin();
+    
+    if (channelsArray[index]) {
+        playBoards(&channel->mFbo);
     }else{
         ofClear(0, 0, 0);
     }
-}
-
-void ofApp::updateMutBoard7(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (serverArray[7]) {
-        playBoards(fbo);
-    }else{
-        ofClear(0, 0, 0);
-    }
-}
-
-void ofApp::updateMutBoard8(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (serverArray[8]) {
-        playBoards(fbo);
-    }else{
-        ofClear(0, 0, 0);
-    }
-}
-
-void ofApp::updateMutBoard9(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo){
-    if (serverArray[9]) {
-        playBoards(fbo);
-    }else{
-        ofClear(0, 0, 0);
-    }
+    channel->mTexture.loadScreenData(0, 0, channel->mWidth, channel->mHeight);
+    channel->mSyphonServer.publishTexture(&channel->mTexture);
+    
+    channel->mFbo.end();
+    
 }
 
 // ------------------------------------ Channel controlling ------------------------------------
@@ -203,25 +138,25 @@ void ofApp::setBoardsArrayTrueOnlyAtIndex(int index){
     }
 }
 
-void ofApp::setServerArrayTrueOnlyAtIndex(int index){
-    for (int i = 0; i < numberofServers; i++) {
+void ofApp::setChannelsArrayTrueOnlyAtIndex(int index){
+    for (int i = 0; i < numberofChannels; i++) {
         if (i==index) {
-            serverArray[index]=true;
+            channelsArray[index]=true;
         }else{
-            serverArray[i]=false;
+            channelsArray[i]=false;
         }
     }
 }
 
-void ofApp::setServerArrayTrue(){
-    for (int i = 0; i < numberofServers; i++) {
-        serverArray[i]=true;
+void ofApp::setChannelsArrayTrue(){
+    for (int i = 0; i < numberofChannels; i++) {
+        channelsArray[i]=true;
     }
 }
 
-void ofApp::setServerArrayFalse(){
-    for (int i = 0; i < numberofServers; i++) {
-        serverArray[i]=false;
+void ofApp::setChannelsArrayFalse(){
+    for (int i = 0; i < numberofChannels; i++) {
+        channelsArray[i]=false;
     }
 }
 
@@ -229,34 +164,34 @@ void ofApp::setServerArrayFalse(){
 
 void ofApp::setupArrays(){
     
-    serverArray = new bool[numberofServers];
-    setServerArrayTrue();
+    channelsArray = new bool[numberofChannels];
+    setChannelsArrayTrue();
     boardsArray = new bool[numberofBoards];
     setBoardsArrayTrueOnlyAtIndex(1);
     
 }
 
-void ofApp::setupServers(){
-    board0 = new mutBoard(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
-    boards.push_back(board0);
-    board1 = new mutBoard(f1Long, f1Short, GL_RGBA32F_ARB, "F1");
-    boards.push_back(board1);
-    board2 = new mutBoard(f2Long, f2Short, GL_RGBA32F_ARB, "F2");
-    boards.push_back(board2);
-    board3 = new mutBoard(f3Long, f3Short, GL_RGBA32F_ARB, "F3");
-    boards.push_back(board3);
-    board4 = new mutBoard(f4Long, f4Short, GL_RGBA32F_ARB, "F4");
-    boards.push_back(board4);
-    board5 = new mutBoard(f5Long, f5Short, GL_RGBA32F_ARB, "F5");
-    boards.push_back(board5);
-    board6 = new mutBoard(f6Long, f6Short, GL_RGBA32F_ARB, "F6");
-    boards.push_back(board6);
-    board7 = new mutBoard(f7Long, f7Short, GL_RGBA32F_ARB, "F7");
-    boards.push_back(board7);
-    board8 = new mutBoard(f8Long, f8Short, GL_RGBA32F_ARB, "F8");
-    boards.push_back(board8);
-    board9 = new mutBoard(f9Long, f9Short, GL_RGBA32F_ARB, "F9");
-    boards.push_back(board9);
+void ofApp::setupChannels(){
+    channel0 = new channel(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
+    channels.push_back(channel0);
+    channel1 = new channel(f1Long, f1Short, GL_RGBA32F_ARB, "F1");
+    channels.push_back(channel1);
+    channel2 = new channel(f2Long, f2Short, GL_RGBA32F_ARB, "F2");
+    channels.push_back(channel2);
+    channel3 = new channel(f3Long, f3Short, GL_RGBA32F_ARB, "F3");
+    channels.push_back(channel3);
+    channel4 = new channel(f4Long, f4Short, GL_RGBA32F_ARB, "F4");
+    channels.push_back(channel4);
+    channel5 = new channel(f5Long, f5Short, GL_RGBA32F_ARB, "F5");
+    channels.push_back(channel5);
+    channel6 = new channel(f6Long, f6Short, GL_RGBA32F_ARB, "F6");
+    channels.push_back(channel6);
+    channel7 = new channel(f7Long, f7Short, GL_RGBA32F_ARB, "F7");
+    channels.push_back(channel7);
+    channel8 = new channel(f8Long, f8Short, GL_RGBA32F_ARB, "F8");
+    channels.push_back(channel8);
+    channel9 = new channel(f9Long, f9Short, GL_RGBA32F_ARB, "F9");
+    channels.push_back(channel9);
 }
 
 // ------------------------------------ of Lifecycle ------------------------------------
@@ -264,14 +199,15 @@ void ofApp::setupServers(){
 void ofApp::setup(){
     
     setupArrays();
-    setupServers();
+    setupChannels();
     
-    
-    
+    mMovingFrameBoard = *new class movingFrameBoard();
     
     mFont.loadFont("vag.ttf", 50);
     
-    soundPlayer.loadSound("music/testPattern.mp3");
+//    soundPlayer.loadSound("music/testPattern.mp3");
+    soundPlayer.loadSound("music/02 Blood Stevia Sex Magik.mp3");
+    
     fftSmoothed = new float[8192];
 	for (int i = 0; i < 8192; i++){
 		fftSmoothed[i] = 0;
@@ -281,45 +217,10 @@ void ofApp::setup(){
 
 void ofApp::update(){
     
-    for (int i=0; i<boards.size(); i++) {
-        mutBoard *board = boards[i];
+    for (int i=0; i<channels.size(); i++) {
         
-        board->mFbo.begin();
-        
-        if (board->mSyphonServerName == "F0") {
-            updateMutBoard0(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }
-        else if (board->mSyphonServerName == "F1") {
-            updateMutBoard1(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }
-        else if (board->mSyphonServerName == "F2") {
-            updateMutBoard2(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }
-        else if (board->mSyphonServerName == "F3") {
-            updateMutBoard3(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }
-        else if (board->mSyphonServerName == "F4") {
-            updateMutBoard4(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }
-        else if (board->mSyphonServerName == "F5") {
-            updateMutBoard5(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }
-        else if (board->mSyphonServerName == "F6") {
-            updateMutBoard6(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }
-        else if (board->mSyphonServerName == "F7") {
-            updateMutBoard7(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }
-        else if (board->mSyphonServerName == "F8") {
-            updateMutBoard8(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }
-        else if (board->mSyphonServerName == "F9") {
-            updateMutBoard9(&board->mSyphonServer, &board->mTexture, &board->mFbo);
-        }
-
-        board->mTexture.loadScreenData(0, 0, board->mWidth, board->mHeight);
-        board->mSyphonServer.publishTexture(&board->mTexture);
-        board->mFbo.end();
+        channel *channel = channels[i];
+        updateChannel(channel, i);
         
     }
 }
@@ -330,11 +231,11 @@ void ofApp::draw(){
     
     ofSetColor(255, 255, 255);    // draw fbo without color modulation
     
-    for (int i=0; i<boards.size(); i++) {
-        mutBoard *board = boards[i];
+    for (int i=0; i<channels.size(); i++) {
+        channel *channel = channels[i];
         
-        if (board->mSyphonServerName == "F0") {
-            board->draw(0,0);
+        if (channel->mSyphonServerName == "F0") {
+            channel->draw(0,0);
         }
     }
     
@@ -342,25 +243,25 @@ void ofApp::draw(){
 
 void ofApp::keyPressed(int key){
     if (key=='0') {
-        setServerArrayTrueOnlyAtIndex(0);
+        setChannelsArrayTrueOnlyAtIndex(0);
     }else if(key=='1'){
-        setServerArrayTrueOnlyAtIndex(1);
+        setChannelsArrayTrueOnlyAtIndex(1);
     }else if(key=='2'){
-        setServerArrayTrueOnlyAtIndex(2);
+        setChannelsArrayTrueOnlyAtIndex(2);
     }else if(key=='3'){
-        setServerArrayTrueOnlyAtIndex(3);
+        setChannelsArrayTrueOnlyAtIndex(3);
     }else if(key=='4'){
-        setServerArrayTrueOnlyAtIndex(4);
+        setChannelsArrayTrueOnlyAtIndex(4);
     }else if(key=='5'){
-        setServerArrayTrueOnlyAtIndex(5);
+        setChannelsArrayTrueOnlyAtIndex(5);
     }else if(key=='6'){
-        setServerArrayTrueOnlyAtIndex(6);
+        setChannelsArrayTrueOnlyAtIndex(6);
     }else if(key=='7'){
-        setServerArrayTrueOnlyAtIndex(7);
+        setChannelsArrayTrueOnlyAtIndex(7);
     }else if(key=='8'){
-        setServerArrayTrueOnlyAtIndex(8);
+        setChannelsArrayTrueOnlyAtIndex(8);
     }else if(key=='9'){
-        setServerArrayTrueOnlyAtIndex(9);
+        setChannelsArrayTrueOnlyAtIndex(9);
     }
     
     if (key=='a') {
@@ -372,25 +273,25 @@ void ofApp::keyPressed(int key){
     }else if(key=='d'){
         setBoardsArrayTrueOnlyAtIndex(3);
     }/*else if(key=='e'){
-        setServerArrayTrueOnlyAtIndex(4);
+        setBoardsArrayTrueOnlyAtIndex(4);
     }else if(key=='f'){
-        setServerArrayTrueOnlyAtIndex(5);
+        setBoardsArrayTrueOnlyAtIndex(5);
     }else if(key=='g'){
-        setServerArrayTrueOnlyAtIndex(6);
+        setBoardsArrayTrueOnlyAtIndex(6);
     }else if(key=='h'){
-        setServerArrayTrueOnlyAtIndex(7);
+        setBoardsArrayTrueOnlyAtIndex(7);
     }else if(key=='i'){
-        setServerArrayTrueOnlyAtIndex(8);
+        setBoardsArrayTrueOnlyAtIndex(8);
     }else if(key=='j'){
-        setServerArrayTrueOnlyAtIndex(9);
+        setBoardsArrayTrueOnlyAtIndex(9);
     }*/
     
     if(key=='q'){
         playAll = !playAll;
         if (playAll) {
-            setServerArrayTrue();
+            setChannelsArrayTrue();
         }else{
-            setServerArrayFalse();
+            setChannelsArrayFalse();
         }
     }
     

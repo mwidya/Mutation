@@ -2,7 +2,8 @@
 
 #include "ofMain.h"
 //#include "ofxSyphon.h"
-#include "mutBoard.h"
+#include "channel.h"
+#include "movingFrameBoard.h"
 
 class ofApp : public ofBaseApp{
 
@@ -17,30 +18,23 @@ public:
     void testBoard(ofFbo *fbo);
     void oneColor(ofFbo *fbo);
     
-    // ------------------------------------ Syphon Servers ------------------------------------
+    movingFrameBoard mMovingFrameBoard;
     
-    void updateMutBoard0(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
-    void updateMutBoard1(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
-    void updateMutBoard2(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
-    void updateMutBoard3(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
-    void updateMutBoard4(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
-    void updateMutBoard5(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
-    void updateMutBoard6(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
-    void updateMutBoard7(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
-    void updateMutBoard8(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
-    void updateMutBoard9(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    // ------------------------------------ Channels ------------------------------------
+    
+    void updateChannel(channel *channel, int index);
     
     // ------------------------------------ Channel controlling ------------------------------------
     
     void setBoardsArrayTrueOnlyAtIndex(int index);
-    void setServerArrayTrueOnlyAtIndex(int index);
-    void setServerArrayTrue();
-    void setServerArrayFalse();
+    void setChannelsArrayTrueOnlyAtIndex(int index);
+    void setChannelsArrayTrue();
+    void setChannelsArrayFalse();
     
     // ------------------------------------ Setups & Configurations ------------------------------------
     
     void setupArrays();
-    void setupServers();
+    void setupChannels();
     
     // ------------------------------------ of Lifecycle ------------------------------------
     
@@ -51,20 +45,20 @@ public:
     
     // ------------------------------------ Global Variables ------------------------------------
     
-    vector<mutBoard*> boards;
-    mutBoard *board0;
-    mutBoard *board1;
-    mutBoard *board2;
-    mutBoard *board3;
-    mutBoard *board4;
-    mutBoard *board5;
-    mutBoard *board6;
-    mutBoard *board7;
-    mutBoard *board8;
-    mutBoard *board9;
+    vector<channel*> channels;
+    channel *channel0;
+    channel *channel1;
+    channel *channel2;
+    channel *channel3;
+    channel *channel4;
+    channel *channel5;
+    channel *channel6;
+    channel *channel7;
+    channel *channel8;
+    channel *channel9;
     
-    int numberofServers = 10;
-    bool *serverArray;
+    int numberofChannels = 10;
+    bool *channelsArray;
     int numberofBoards = 4;
     bool *boardsArray;
     
