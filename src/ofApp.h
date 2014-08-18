@@ -7,22 +7,17 @@
 class ofApp : public ofBaseApp{
 
 public:
-    void setup();
-    void update();
-    void draw();
-    void keyPressed(int key);
-    
-    void setBoardsArrayTrueOnlyAtIndex(int index);
-    void setServerArrayTrueOnlyAtIndex(int index);
-    void setServerArrayTrue();
-    void setServerArrayFalse();
     
     void playBoards(ofFbo *fbo);
+    
+    // ------------------------------------ Boards ------------------------------------
     
     void chessboard1(ofFbo *fbo);
     void movingFrames(ofFbo *fbo);
     void testBoard(ofFbo *fbo);
     void oneColor(ofFbo *fbo);
+    
+    // ------------------------------------ Syphon Servers ------------------------------------
     
     void updateMutBoard0(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
     void updateMutBoard1(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
@@ -34,6 +29,27 @@ public:
     void updateMutBoard7(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
     void updateMutBoard8(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
     void updateMutBoard9(ofxSyphonServer *syphonServer, ofTexture *texture, ofFbo *fbo);
+    
+    // ------------------------------------ Channel controlling ------------------------------------
+    
+    void setBoardsArrayTrueOnlyAtIndex(int index);
+    void setServerArrayTrueOnlyAtIndex(int index);
+    void setServerArrayTrue();
+    void setServerArrayFalse();
+    
+    // ------------------------------------ Setups & Configurations ------------------------------------
+    
+    void setupArrays();
+    void setupServers();
+    
+    // ------------------------------------ of Lifecycle ------------------------------------
+    
+    void setup();
+    void update();
+    void draw();
+    void keyPressed(int key);
+    
+    // ------------------------------------ Global Variables ------------------------------------
     
     vector<mutBoard*> boards;
     mutBoard *board0;

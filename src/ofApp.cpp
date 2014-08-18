@@ -225,24 +225,18 @@ void ofApp::setServerArrayFalse(){
     }
 }
 
-// ------------------------------------ of Lifecycle ------------------------------------
+// ------------------------------------ Setups & Configurations ------------------------------------
 
-void ofApp::setup(){
+void ofApp::setupArrays(){
     
     serverArray = new bool[numberofServers];
     setServerArrayTrue();
     boardsArray = new bool[numberofBoards];
     setBoardsArrayTrueOnlyAtIndex(1);
     
-    mFont.loadFont("vag.ttf", 50);
-    
-    soundPlayer.loadSound("music/testPattern.mp3");
-    fftSmoothed = new float[8192];
-	for (int i = 0; i < 8192; i++){
-		fftSmoothed[i] = 0;
-	}
-	nBandsToGet = 64;
-    
+}
+
+void ofApp::setupServers(){
     board0 = new mutBoard(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
     boards.push_back(board0);
     board1 = new mutBoard(f1Long, f1Short, GL_RGBA32F_ARB, "F1");
@@ -263,6 +257,26 @@ void ofApp::setup(){
     boards.push_back(board8);
     board9 = new mutBoard(f9Long, f9Short, GL_RGBA32F_ARB, "F9");
     boards.push_back(board9);
+}
+
+// ------------------------------------ of Lifecycle ------------------------------------
+
+void ofApp::setup(){
+    
+    setupArrays();
+    setupServers();
+    
+    
+    
+    
+    mFont.loadFont("vag.ttf", 50);
+    
+    soundPlayer.loadSound("music/testPattern.mp3");
+    fftSmoothed = new float[8192];
+	for (int i = 0; i < 8192; i++){
+		fftSmoothed[i] = 0;
+	}
+	nBandsToGet = 64;
 }
 
 void ofApp::update(){
