@@ -51,11 +51,17 @@ public:
     bool *serverArray;
     int numberofBoards = 4;
     bool *boardsArray;
-	
-    // ------------------ moving frames ------------------
     
     bool playAll;
+	
+    ofTrueTypeFont mFont;
+    
+    /*// ------------------ moving frames ------------------
+    // TODO vars has to be instantiated in an object
 	float f4_fadeAmnt;
+    float shiftX, shiftY = 0;
+    int directionX = 1;
+    float speed = 0.2;*/
     
     // ------------------ chessboard1 ------------------
     

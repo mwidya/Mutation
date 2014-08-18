@@ -77,17 +77,12 @@ void ofApp::chessboard1(ofFbo *fbo){
 
 void ofApp::movingFrames(ofFbo *fbo){
     
-    float width = fbo->getWidth();
-    float height = fbo->getHeight();
-    
-    f4_fadeAmnt = 3;
+    float f4_fadeAmnt = 1.5;
     
     ofSetColor(150, 150, 150, f4_fadeAmnt);
-    ofRect(0, 0, width, height);
+    ofRect(0, 0, fbo->getWidth(), fbo->getHeight());
     
-    int speed = 8;
-    
-    int shiftX   = (ofGetElapsedTimeMillis() / speed ) % (int)width;
+    int shiftX   = (ofGetElapsedTimeMillis() / 8 ) % (int)fbo->getWidth();
     
     ofSetColor(0,255,0);
     ofRect(shiftX, 0, 150*factor, 150*factor);
@@ -107,6 +102,9 @@ void ofApp::testBoard(ofFbo *fbo){
 void ofApp::oneColor(ofFbo *fbo){
     ofSetColor(ofColor::gray);
     ofRect(0, 0, fbo->getWidth(), fbo->getHeight());
+    
+    ofSetColor(255,122,220);
+    mFont.drawString("Bangin !!!", 100, 100);
     
 }
 
@@ -232,7 +230,11 @@ void ofApp::setServerArrayFalse(){
 void ofApp::setup(){
     
     serverArray = new bool[numberofServers];
+    setServerArrayTrue();
     boardsArray = new bool[numberofBoards];
+    setBoardsArrayTrueOnlyAtIndex(1);
+    
+    mFont.loadFont("vag.ttf", 50);
     
     soundPlayer.loadSound("music/testPattern.mp3");
     fftSmoothed = new float[8192];
@@ -318,7 +320,7 @@ void ofApp::draw(){
         mutBoard *board = boards[i];
         
         if (board->mSyphonServerName == "F0") {
-//            board->draw(0,0);
+            board->draw(0,0);
         }
     }
     
