@@ -16,7 +16,7 @@ class chessBoard1{
     
 public:
     chessBoard1(ofFbo *fbo);
-    void play(float *fftSmoothed);
+    void update(float *fftSmoothed);
     
 private:
     ofFbo *mFbo;

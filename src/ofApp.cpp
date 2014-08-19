@@ -1,86 +1,6 @@
 #include "ofApp.h"
 #include "constants.h"
 
-
-void ofApp::playBoards(ofFbo *fbo){
-    if (boardsArray[0]==true) {
-        chessboard1(fbo);
-    }else if (boardsArray[1]==true) {
-//        mMovingFrameBoard.play(fbo);
-    }else if (boardsArray[2]==true) {
-        testBoard(fbo);
-    }else if (boardsArray[3]==true) {
-        oneColor(fbo);
-    }
-    
-}
-
-// ------------------------------------ Boards ------------------------------------
-
-void ofApp::chessboard1(ofFbo *fbo){
-    /*ofSoundUpdate();
-    float * val = ofSoundGetSpectrum(nBandsToGet);
-    for (int i = 0;i < nBandsToGet; i++){
-        fftSmoothed[i] *= 0.96f;
-        if (fftSmoothed[i] < val[i]) fftSmoothed[i] = val[i];
-        
-    }
-    
-    float band0 = fftSmoothed[1]*fbo->getWidth()/25.0;
-    if (band0 > rectSizeMin) {
-        rectSize = (int)band0;
-    }
-    
-    for (int i = 0; i < fbo->getWidth() / rectSize; i++) {
-        for (int j = 0; j < fbo->getHeight() / rectSize; j++) {
-            ofSetColor(ofRandom(0, whiteMax));
-            ofRect(rectSize * i, rectSize * j, rectSize, rectSize);
-        }
-    }
-    
-    float band12 = fftSmoothed[12] * lengthFactor * 5;
-    float band38 = fftSmoothed[38] * lengthFactor;
-    
-    ofSetColor(255, 0, 0, 100);
-    ofRect(0, stroke, band12, stroke);
-    
-    ofSetColor(0, 0, 255, 100);
-    ofRect(fbo->getWidth()-band38, fbo->getHeight() - stroke * 2, band38, stroke);*/
-}
-
-void ofApp::movingFrames(ofFbo *fbo){
-    
-    float f4_fadeAmnt = 1.5;
-    
-    ofSetColor(150, 150, 150, f4_fadeAmnt);
-    ofRect(0, 0, fbo->getWidth(), fbo->getHeight());
-    
-    int shiftX   = (ofGetElapsedTimeMillis() / 8 ) % (int)fbo->getWidth();
-    
-    ofSetColor(0,255,0);
-    ofRect(shiftX, 0, 150*factor, 150*factor);
-    
-}
-
-void ofApp::testBoard(ofFbo *fbo){
-    float _x = ofGetElapsedTimeMillis()/8 % (int)fbo->getWidth();
-    
-    ofSetColor(50, 50, 50);
-    ofRect(0, 0, fbo->getWidth(), fbo->getHeight());
-    ofSetColor(ofColor::yellow);
-    ofCircle(_x, fbo->getHeight()*.5, 50.0);
-
-}
-
-void ofApp::oneColor(ofFbo *fbo){
-    ofSetColor(ofColor::gray);
-    ofRect(0, 0, fbo->getWidth(), fbo->getHeight());
-    
-    ofSetColor(255,122,220);
-    mFont.drawString("Bangin !!!", 100, 100);
-    
-}
-
 // ------------------------------------ Channels ------------------------------------
 
 void ofApp::updateSound(){
@@ -105,13 +25,13 @@ void ofApp::updateChannel(channel *channel, int index){
     if (channelsArray[index]) {
         
         if (boardsArray[0]==true) {
-            chessBoard1s[index]->play(fftSmoothed);
+            chessBoard1s[index]->update(fftSmoothed);
         }else if (boardsArray[1]==true) {
-            movingFrameBoards[index]->play();
+            movingFrameBoards[index]->update();
         }else if (boardsArray[2]==true) {
-//            testBoard(fbo);
+            testBoards[index]->update();
         }else if (boardsArray[3]==true) {
-//            oneColor(fbo);
+            oneColorBoards[index]->update();
         }
         
     }else{
@@ -218,10 +138,15 @@ void ofApp::setup(){
         
         chessBoard1 *cb1 = new chessBoard1(&channel->mFbo);
         chessBoard1s.push_back(cb1);
+        
+        testBoard *tb = new testBoard(&channel->mFbo);
+        testBoards.push_back(tb);
+        
+        oneColorBoard *ocb = new oneColorBoard(&channel->mFbo);
+        oneColorBoards.push_back(ocb);
     }
     
     
-    mFont.loadFont("vag.ttf", 50);
 }
 
 void ofApp::update(){
@@ -281,7 +206,8 @@ void ofApp::keyPressed(int key){
         setBoardsArrayTrueOnlyAtIndex(2);
     }else if(key=='d'){
         setBoardsArrayTrueOnlyAtIndex(3);
-    }/*else if(key=='e'){
+    }
+    /*else if(key=='e'){
         setBoardsArrayTrueOnlyAtIndex(4);
     }else if(key=='f'){
         setBoardsArrayTrueOnlyAtIndex(5);

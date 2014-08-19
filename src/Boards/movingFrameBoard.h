@@ -17,7 +17,7 @@ class movingFrameBoard{
     
 public:
     movingFrameBoard(ofFbo *fbo);
-    void play();
+    void update();
     
 private:
     float mShiftX = 0.0f;

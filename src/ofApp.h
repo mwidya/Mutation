@@ -4,24 +4,16 @@
 #include "channel.h"
 #include "movingFrameBoard.h"
 #include "chessBoard1.h"
+#include "testBoard.h"
+#include "oneColorBoard.h"
 
 class ofApp : public ofBaseApp{
 
 public:
     
-    void playBoards(ofFbo *fbo);
-    
-    // ------------------------------------ Boards ------------------------------------
-    
-    void chessboard1(ofFbo *fbo);
-    void movingFrames(ofFbo *fbo);
-    void testBoard(ofFbo *fbo);
-    void oneColor(ofFbo *fbo);
-    
     // ------------------------------------ Channels ------------------------------------
     
     void updateSound();
-    
     void updateChannel(channel *channel, int index);
     
     // ------------------------------------ Channel controlling ------------------------------------
@@ -63,11 +55,11 @@ public:
     bool *boardsArray;
     
     bool playAll;
-	
-    ofTrueTypeFont mFont;
     
     vector<movingFrameBoard*> movingFrameBoards;
     vector<chessBoard1*> chessBoard1s;
+    vector<testBoard*> testBoards;
+    vector<oneColorBoard*> oneColorBoards;
     
     // ------------------------------------ Sound Player ------------------------------------
     

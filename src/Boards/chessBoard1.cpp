@@ -14,7 +14,7 @@ chessBoard1::chessBoard1(ofFbo *fbo){
     
 }
 
-void chessBoard1::play(float *fftSmoothed){
+void chessBoard1::update(float *fftSmoothed){
 
     float band0 = fftSmoothed[1]*mFbo->getWidth()/25.0;
     float band12 = fftSmoothed[12] * lengthFactor * 5;

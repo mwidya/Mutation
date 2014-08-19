@@ -14,7 +14,7 @@ movingFrameBoard::movingFrameBoard(ofFbo *fbo){
     
 }
 
-void movingFrameBoard::play(){
+void movingFrameBoard::update(){
     
     ofSetColor(150, 150, 150, mFadeAmnt);
     ofRect(0, 0, mFbo->getWidth(), mFbo->getHeight());
