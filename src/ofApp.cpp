@@ -18,7 +18,7 @@ void ofApp::playBoards(ofFbo *fbo){
 // ------------------------------------ Boards ------------------------------------
 
 void ofApp::chessboard1(ofFbo *fbo){
-    ofSoundUpdate();
+    /*ofSoundUpdate();
     float * val = ofSoundGetSpectrum(nBandsToGet);
     for (int i = 0;i < nBandsToGet; i++){
         fftSmoothed[i] *= 0.96f;
@@ -45,7 +45,7 @@ void ofApp::chessboard1(ofFbo *fbo){
     ofRect(0, stroke, band12, stroke);
     
     ofSetColor(0, 0, 255, 100);
-    ofRect(fbo->getWidth()-band38, fbo->getHeight() - stroke * 2, band38, stroke);
+    ofRect(fbo->getWidth()-band38, fbo->getHeight() - stroke * 2, band38, stroke);*/
 }
 
 void ofApp::movingFrames(ofFbo *fbo){
@@ -83,13 +83,37 @@ void ofApp::oneColor(ofFbo *fbo){
 
 // ------------------------------------ Channels ------------------------------------
 
+void ofApp::updateSound(){
+    ofSoundUpdate();
+    
+    float * val = ofSoundGetSpectrum(nBandsToGet);
+    
+    for (int i = 0;i < nBandsToGet; i++){
+        
+        fftSmoothed[i] *= 0.96f;
+        if (fftSmoothed[i] < val[i]) fftSmoothed[i] = val[i];
+        
+    }
+}
+
 void ofApp::updateChannel(channel *channel, int index){
+    
+    updateSound();
     
     channel->mFbo.begin();
     
     if (channelsArray[index]) {
-//        playBoards(&channel->mFbo);
-        movingFrameBoards[index]->play();
+        
+        if (boardsArray[0]==true) {
+            chessBoard1s[index]->play(fftSmoothed);
+        }else if (boardsArray[1]==true) {
+            movingFrameBoards[index]->play();
+        }else if (boardsArray[2]==true) {
+//            testBoard(fbo);
+        }else if (boardsArray[3]==true) {
+//            oneColor(fbo);
+        }
+        
     }else{
         ofClear(0, 0, 0);
     }
@@ -145,7 +169,26 @@ void ofApp::setupArrays(){
     
 }
 
-void ofApp::setupChannels(){
+void ofApp::setupSound(){
+    
+    soundPlayer.loadSound("music/02 Blood Stevia Sex Magik.mp3");
+    
+    fftSmoothed = new float[8192];
+    for (int i = 0; i < 8192; i++){
+        fftSmoothed[i] = 0;
+    }
+    
+    nBandsToGet = 64;
+    
+}
+
+// ------------------------------------ of Lifecycle ------------------------------------
+
+void ofApp::setup(){
+    
+    setupArrays();
+    setupSound();
+    
     channel0 = new channel(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
     channels.push_back(channel0);
     channel1 = new channel(f1Long, f1Short, GL_RGBA32F_ARB, "F1");
@@ -166,32 +209,19 @@ void ofApp::setupChannels(){
     channels.push_back(channel8);
     channel9 = new channel(f9Long, f9Short, GL_RGBA32F_ARB, "F9");
     channels.push_back(channel9);
-}
-
-// ------------------------------------ of Lifecycle ------------------------------------
-
-void ofApp::setup(){
-    
-    setupArrays();
-    setupChannels();
     
     for (int i = 0; i < channels.size(); i++) {
         channel *channel = channels[i];
+        
         movingFrameBoard *mfb = new movingFrameBoard(&channel->mFbo);
         movingFrameBoards.push_back(mfb);
+        
+        chessBoard1 *cb1 = new chessBoard1(&channel->mFbo);
+        chessBoard1s.push_back(cb1);
     }
     
     
     mFont.loadFont("vag.ttf", 50);
-    
-//    soundPlayer.loadSound("music/testPattern.mp3");
-    soundPlayer.loadSound("music/02 Blood Stevia Sex Magik.mp3");
-    
-    fftSmoothed = new float[8192];
-	for (int i = 0; i < 8192; i++){
-		fftSmoothed[i] = 0;
-	}
-	nBandsToGet = 64;
 }
 
 void ofApp::update(){
@@ -280,6 +310,7 @@ void ofApp::keyPressed(int key){
         }else{
             soundPlayer.stop();
         }
+        
         soundIsPlaying = !soundIsPlaying;
     }
     

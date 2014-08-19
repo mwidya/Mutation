@@ -39,6 +39,6 @@ void movingFrameBoard::play(){
         mDirectionY = -1;
     }
     
-    ofSetColor(255,255,0);
+    ofSetColor(0,255,0);
     ofRect(mShiftX, mShiftY, stroke, stroke);
 }

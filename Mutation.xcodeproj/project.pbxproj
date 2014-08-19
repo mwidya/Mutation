@@ -34,6 +34,7 @@
 		EE80835519893A6C00317DBF /* ofxSyphonServer.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE80834B19893A6C00317DBF /* ofxSyphonServer.mm */; };
 		EE80835619893A6C00317DBF /* ofxSyphonServerDirectory.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE80834D19893A6C00317DBF /* ofxSyphonServerDirectory.mm */; };
 		EE80835D19893A8600317DBF /* Syphon.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EE80834019893A6C00317DBF /* Syphon.framework */; };
+		EEBA229119A35F990082B1C3 /* chessBoard1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBA228F19A35F990082B1C3 /* chessBoard1.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,8 @@
 		EE80834B19893A6C00317DBF /* ofxSyphonServer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxSyphonServer.mm; sourceTree = "<group>"; };
 		EE80834C19893A6C00317DBF /* ofxSyphonServerDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSyphonServerDirectory.h; sourceTree = "<group>"; };
 		EE80834D19893A6C00317DBF /* ofxSyphonServerDirectory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ofxSyphonServerDirectory.mm; sourceTree = "<group>"; };
+		EEBA228F19A35F990082B1C3 /* chessBoard1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = chessBoard1.cpp; path = Boards/chessBoard1.cpp; sourceTree = "<group>"; };
+		EEBA229019A35F990082B1C3 /* chessBoard1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = chessBoard1.h; path = Boards/chessBoard1.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +234,8 @@
 			children = (
 				EE41190B19A2880C00828A45 /* movingFrameBoard.cpp */,
 				EE41190C19A2880C00828A45 /* movingFrameBoard.h */,
+				EEBA228F19A35F990082B1C3 /* chessBoard1.cpp */,
+				EEBA229019A35F990082B1C3 /* chessBoard1.h */,
 			);
 			name = Boards;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 				EE80835619893A6C00317DBF /* ofxSyphonServerDirectory.mm in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				EE80835319893A6C00317DBF /* SyphonNameboundClient.m in Sources */,
+				EEBA229119A35F990082B1C3 /* chessBoard1.cpp in Sources */,
 				EE80835519893A6C00317DBF /* ofxSyphonServer.mm in Sources */,
 				EE80835419893A6C00317DBF /* ofxSyphonClient.mm in Sources */,
 				EE68A1D0198B990600439139 /* channel.cpp in Sources */,

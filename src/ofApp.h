@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "channel.h"
 #include "movingFrameBoard.h"
+#include "chessBoard1.h"
 
 class ofApp : public ofBaseApp{
 
@@ -19,6 +20,8 @@ public:
     
     // ------------------------------------ Channels ------------------------------------
     
+    void updateSound();
+    
     void updateChannel(channel *channel, int index);
     
     // ------------------------------------ Channel controlling ------------------------------------
@@ -31,7 +34,7 @@ public:
     // ------------------------------------ Setups & Configurations ------------------------------------
     
     void setupArrays();
-    void setupChannels();
+    void setupSound();
     
     // ------------------------------------ of Lifecycle ------------------------------------
     
@@ -64,23 +67,10 @@ public:
     ofTrueTypeFont mFont;
     
     vector<movingFrameBoard*> movingFrameBoards;
+    vector<chessBoard1*> chessBoard1s;
     
-    /*// ------------------ moving frames ------------------
-    // TODO vars has to be instantiated in an object
-	float f4_fadeAmnt;
-    float shiftX, shiftY = 0;
-    int directionX = 1;
-    float speed = 0.2;*/
+    // ------------------------------------ Sound Player ------------------------------------
     
-    // ------------------ chessboard1 ------------------
-    
-    float rectSize = 5;
-    float rectSizeMin = 5;
-    float whiteMax = 255;
-    int gray = 255;
-    
-    float stroke = 20;
-    float lengthFactor = 130;
     ofSoundPlayer soundPlayer;
     bool soundIsPlaying;
     float *fftSmoothed;
