@@ -11,10 +11,22 @@ class ofApp : public ofBaseApp{
 
 public:
     
-    // ------------------------------------ Channels ------------------------------------
+    // ------------------------------------ Setups & Configurations ------------------------------------
+    
+    void setupArrays();
+    void setupSound();
+    void setupChannels();
+    void setup();
+    
+    // ------------------------------------ Updates ------------------------------------
     
     void updateSound();
     void updateChannel(channel *channel, int index);
+    void update();
+    
+    // ------------------------------------ of Lifecycle ------------------------------------
+    void draw();
+    void keyPressed(int key);
     
     // ------------------------------------ Channel controlling ------------------------------------
     
@@ -22,18 +34,6 @@ public:
     void setChannelsArrayTrueOnlyAtIndex(int index);
     void setChannelsArrayTrue();
     void setChannelsArrayFalse();
-    
-    // ------------------------------------ Setups & Configurations ------------------------------------
-    
-    void setupArrays();
-    void setupSound();
-    
-    // ------------------------------------ of Lifecycle ------------------------------------
-    
-    void setup();
-    void update();
-    void draw();
-    void keyPressed(int key);
     
     // ------------------------------------ Global Variables ------------------------------------
     

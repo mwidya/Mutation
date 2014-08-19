@@ -1,7 +1,81 @@
 #include "ofApp.h"
 #include "constants.h"
 
-// ------------------------------------ Channels ------------------------------------
+// ------------------------------------ Setups & Configurations ------------------------------------
+
+void ofApp::setupArrays(){
+    
+    channelsArray = new bool[numberofChannels];
+    setChannelsArrayTrue();
+    boardsArray = new bool[numberofBoards];
+    setBoardsArrayTrueOnlyAtIndex(1);
+    
+}
+
+void ofApp::setupSound(){
+    
+    soundPlayer.loadSound("music/02 Blood Stevia Sex Magik.mp3");
+    
+    fftSmoothed = new float[8192];
+    for (int i = 0; i < 8192; i++){
+        fftSmoothed[i] = 0;
+    }
+    
+    nBandsToGet = 64;
+    
+}
+
+void ofApp::setupChannels(){
+    
+    channel0 = new channel(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
+    channels.push_back(channel0);
+    channel1 = new channel(f1Long, f1Short, GL_RGBA32F_ARB, "F1");
+    channels.push_back(channel1);
+    channel2 = new channel(f2Long, f2Short, GL_RGBA32F_ARB, "F2");
+    channels.push_back(channel2);
+    channel3 = new channel(f3Long, f3Short, GL_RGBA32F_ARB, "F3");
+    channels.push_back(channel3);
+    channel4 = new channel(f4Long, f4Short, GL_RGBA32F_ARB, "F4");
+    channels.push_back(channel4);
+    channel5 = new channel(f5Long, f5Short, GL_RGBA32F_ARB, "F5");
+    channels.push_back(channel5);
+    channel6 = new channel(f6Long, f6Short, GL_RGBA32F_ARB, "F6");
+    channels.push_back(channel6);
+    channel7 = new channel(f7Long, f7Short, GL_RGBA32F_ARB, "F7");
+    channels.push_back(channel7);
+    channel8 = new channel(f8Long, f8Short, GL_RGBA32F_ARB, "F8");
+    channels.push_back(channel8);
+    channel9 = new channel(f9Long, f9Short, GL_RGBA32F_ARB, "F9");
+    channels.push_back(channel9);
+
+}
+
+void ofApp::setup(){
+    
+    setupArrays();
+    setupSound();
+    setupChannels();
+    
+    for (int i = 0; i < channels.size(); i++) {
+        channel *channel = channels[i];
+        
+        movingFrameBoard *mfb = new movingFrameBoard(&channel->mFbo);
+        movingFrameBoards.push_back(mfb);
+        
+        chessBoard1 *cb1 = new chessBoard1(&channel->mFbo);
+        chessBoard1s.push_back(cb1);
+        
+        testBoard *tb = new testBoard(&channel->mFbo);
+        testBoards.push_back(tb);
+        
+        oneColorBoard *ocb = new oneColorBoard(&channel->mFbo);
+        oneColorBoards.push_back(ocb);
+    }
+    
+    
+}
+
+// ------------------------------------ Updates ------------------------------------
 
 void ofApp::updateSound(){
     ofSoundUpdate();
@@ -44,111 +118,6 @@ void ofApp::updateChannel(channel *channel, int index){
     
 }
 
-// ------------------------------------ Channel controlling ------------------------------------
-
-void ofApp::setBoardsArrayTrueOnlyAtIndex(int index){
-    for (int i = 0; i < numberofBoards; i++) {
-        if (i==index) {
-            boardsArray[index]=true;
-        }else{
-            boardsArray[i]=false;
-        }
-    }
-}
-
-void ofApp::setChannelsArrayTrueOnlyAtIndex(int index){
-    for (int i = 0; i < numberofChannels; i++) {
-        if (i==index) {
-            channelsArray[index]=true;
-        }else{
-            channelsArray[i]=false;
-        }
-    }
-}
-
-void ofApp::setChannelsArrayTrue(){
-    for (int i = 0; i < numberofChannels; i++) {
-        channelsArray[i]=true;
-    }
-}
-
-void ofApp::setChannelsArrayFalse(){
-    for (int i = 0; i < numberofChannels; i++) {
-        channelsArray[i]=false;
-    }
-}
-
-// ------------------------------------ Setups & Configurations ------------------------------------
-
-void ofApp::setupArrays(){
-    
-    channelsArray = new bool[numberofChannels];
-    setChannelsArrayTrue();
-    boardsArray = new bool[numberofBoards];
-    setBoardsArrayTrueOnlyAtIndex(1);
-    
-}
-
-void ofApp::setupSound(){
-    
-    soundPlayer.loadSound("music/02 Blood Stevia Sex Magik.mp3");
-    
-    fftSmoothed = new float[8192];
-    for (int i = 0; i < 8192; i++){
-        fftSmoothed[i] = 0;
-    }
-    
-    nBandsToGet = 64;
-    
-}
-
-// ------------------------------------ of Lifecycle ------------------------------------
-
-void ofApp::setup(){
-    
-    setupArrays();
-    setupSound();
-    
-    channel0 = new channel(f0Long, f0Short, GL_RGBA32F_ARB, "F0");
-    channels.push_back(channel0);
-    channel1 = new channel(f1Long, f1Short, GL_RGBA32F_ARB, "F1");
-    channels.push_back(channel1);
-    channel2 = new channel(f2Long, f2Short, GL_RGBA32F_ARB, "F2");
-    channels.push_back(channel2);
-    channel3 = new channel(f3Long, f3Short, GL_RGBA32F_ARB, "F3");
-    channels.push_back(channel3);
-    channel4 = new channel(f4Long, f4Short, GL_RGBA32F_ARB, "F4");
-    channels.push_back(channel4);
-    channel5 = new channel(f5Long, f5Short, GL_RGBA32F_ARB, "F5");
-    channels.push_back(channel5);
-    channel6 = new channel(f6Long, f6Short, GL_RGBA32F_ARB, "F6");
-    channels.push_back(channel6);
-    channel7 = new channel(f7Long, f7Short, GL_RGBA32F_ARB, "F7");
-    channels.push_back(channel7);
-    channel8 = new channel(f8Long, f8Short, GL_RGBA32F_ARB, "F8");
-    channels.push_back(channel8);
-    channel9 = new channel(f9Long, f9Short, GL_RGBA32F_ARB, "F9");
-    channels.push_back(channel9);
-    
-    for (int i = 0; i < channels.size(); i++) {
-        channel *channel = channels[i];
-        
-        movingFrameBoard *mfb = new movingFrameBoard(&channel->mFbo);
-        movingFrameBoards.push_back(mfb);
-        
-        chessBoard1 *cb1 = new chessBoard1(&channel->mFbo);
-        chessBoard1s.push_back(cb1);
-        
-        testBoard *tb = new testBoard(&channel->mFbo);
-        testBoards.push_back(tb);
-        
-        oneColorBoard *ocb = new oneColorBoard(&channel->mFbo);
-        oneColorBoards.push_back(ocb);
-    }
-    
-    
-}
-
 void ofApp::update(){
     
     for (int i=0; i<channels.size(); i++) {
@@ -158,6 +127,8 @@ void ofApp::update(){
         
     }
 }
+
+// ------------------------------------ of Lifecycle ------------------------------------
 
 void ofApp::draw(){
 
@@ -240,6 +211,40 @@ void ofApp::keyPressed(int key){
         soundIsPlaying = !soundIsPlaying;
     }
     
+}
+
+// ------------------------------------ Channel controlling ------------------------------------
+
+void ofApp::setBoardsArrayTrueOnlyAtIndex(int index){
+    for (int i = 0; i < numberofBoards; i++) {
+        if (i==index) {
+            boardsArray[index]=true;
+        }else{
+            boardsArray[i]=false;
+        }
+    }
+}
+
+void ofApp::setChannelsArrayTrueOnlyAtIndex(int index){
+    for (int i = 0; i < numberofChannels; i++) {
+        if (i==index) {
+            channelsArray[index]=true;
+        }else{
+            channelsArray[i]=false;
+        }
+    }
+}
+
+void ofApp::setChannelsArrayTrue(){
+    for (int i = 0; i < numberofChannels; i++) {
+        channelsArray[i]=true;
+    }
+}
+
+void ofApp::setChannelsArrayFalse(){
+    for (int i = 0; i < numberofChannels; i++) {
+        channelsArray[i]=false;
+    }
 }
 
 
