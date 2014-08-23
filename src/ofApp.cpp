@@ -14,7 +14,9 @@ void ofApp::setupArrays(){
 
 void ofApp::setupSound(){
     
-    soundPlayer.loadSound("music/02 Blood Stevia Sex Magik.mp3");
+//    soundPlayer.loadSound("music/02 Blood Stevia Sex Magik.mp3");
+    soundPlayer.loadSound("music/Cmin_geschisse_v3.wav");
+//    soundPlayer.loadSound("music/St_able_v1.wav");
     
     fftSmoothed = new float[8192];
     for (int i = 0; i < 8192; i++){
