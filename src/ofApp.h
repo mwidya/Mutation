@@ -6,6 +6,7 @@
 #include "chessBoard1.h"
 #include "testBoard.h"
 #include "oneColorBoard.h"
+#include "chessBoard2.h"
 
 class ofApp : public ofBaseApp{
 
@@ -51,7 +52,7 @@ public:
     
     int numberofChannels = 10;
     bool *channelsArray;
-    int numberofBoards = 4;
+    int numberofBoards = 5;
     bool *boardsArray;
     
     bool playAll;
@@ -60,6 +61,7 @@ public:
     vector<chessBoard1*> chessBoard1s;
     vector<testBoard*> testBoards;
     vector<oneColorBoard*> oneColorBoards;
+    vector<chessBoard2*> chessBoard2s;
     
     // ------------------------------------ Sound Player ------------------------------------
     

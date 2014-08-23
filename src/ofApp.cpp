@@ -72,6 +72,9 @@ void ofApp::setup(){
         
         oneColorBoard *ocb = new oneColorBoard(&channel->mFbo);
         oneColorBoards.push_back(ocb);
+        
+        chessBoard2 *cb2 = new chessBoard2(&channel->mFbo);
+        chessBoard2s.push_back(cb2);
     }
     
     
@@ -108,6 +111,8 @@ void ofApp::updateChannel(channel *channel, int index){
             testBoards[index]->update();
         }else if (boardsArray[3]==true) {
             oneColorBoards[index]->update();
+        }else if (boardsArray[4]==true) {
+            chessBoard2s[index]->update();
         }
         
     }else{
@@ -180,9 +185,9 @@ void ofApp::keyPressed(int key){
     }else if(key=='d'){
         setBoardsArrayTrueOnlyAtIndex(3);
     }
-    /*else if(key=='e'){
+    else if(key=='e'){
         setBoardsArrayTrueOnlyAtIndex(4);
-    }else if(key=='f'){
+    }/*else if(key=='f'){
         setBoardsArrayTrueOnlyAtIndex(5);
     }else if(key=='g'){
         setBoardsArrayTrueOnlyAtIndex(6);
