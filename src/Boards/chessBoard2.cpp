@@ -11,10 +11,22 @@
 chessBoard2::chessBoard2(ofFbo *fbo){
     
     mFbo = fbo;
+    fieldSize = mFbo->getWidth()/6.0;
+    
+    for (int i = 0; i < mFbo->getWidth() / fieldSize; i++) {
+        for (int j = 0; j < mFbo->getHeight() / fieldSize; j++) {
+            int randomColor = ofRandom(255);
+            chessField *cf = new chessField(i*fieldSize, j*fieldSize, fieldSize);
+            cf->setColor(randomColor,randomColor,randomColor);
+            chessFields.push_back(cf);
+        }
+    }
+    
     
 }
 
 void chessBoard2::update(){
-    ofSetColor(20,60,150);
-    ofRect(0,0,mFbo->getWidth(),mFbo->getHeight());
+    for (int i=0; i<chessFields.size(); i++) {
+        chessFields[i]->draw();
+    }
 }

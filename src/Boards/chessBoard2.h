@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "ofMain.h"
+#include "chessField.h"
 
 class chessBoard2{
     
@@ -20,6 +21,8 @@ public:
     
 private:
     ofFbo *mFbo;
+    vector<chessField*> chessFields;
+    float fieldSize;
 };
 
 #endif /* defined(__Mutation__chessBoard2__) */
