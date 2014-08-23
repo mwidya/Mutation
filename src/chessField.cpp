@@ -19,21 +19,36 @@ chessField::chessField(float x, float y, float size)
 void chessField::draw()
 {
     
-    ofSetColor(_red, _green, _blue);
+    if (tmpColor) {
+        ofSetColor(mTmpRed, mTmpGreen, mTmpBlue);
+    }else{
+        ofSetColor(mRed, mGreen, mBlue);
+    }
     ofRect(this->getX(), this->getY(), this->getWidth(), this->getHeight());
     
 }
 
 void chessField::setColor(int r, int g, int b)
 {
-    _red = r;
-    _green = g;
-    _blue = b;
+    mRed = r;
+    mGreen = g;
+    mBlue = b;
+    
+    tmpColor = false;
+}
+
+void chessField::setTempColor(int r, int g, int b)
+{
+    mTmpRed = r;
+    mTmpGreen = g;
+    mTmpBlue = b;
+    
+    tmpColor = true;
 }
 
 void chessField::playSound(int i)
 {
-    string path = "music/audio_" + ofToString(i) + ".aif";
-    _soundPlayer.loadSound(path);
-    _soundPlayer.play();
+    string path = "music/chessBoard2/audio_" + ofToString(i) + ".aif";
+    mSoundPlayer.loadSound(path);
+    mSoundPlayer.play();
 }

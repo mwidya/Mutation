@@ -30,3 +30,17 @@ void chessBoard2::update(){
         chessFields[i]->draw();
     }
 }
+
+void chessBoard2::tiggerAtPoint(int x_, int y_, string event_){
+    for (int i = 0; i < chessFields.size(); i++) {
+        chessField *cf = chessFields[i];
+        if(cf->inside(x_, y_)){
+            if (event_ == "press") {
+                cf->setTempColor(ofRandom(255), ofRandom(255), ofRandom(255));
+                cf->playSound(i);
+            }else{
+                cf->setColor(cf->mRed, cf->mGreen, cf->mBlue);
+            }
+        }
+    }
+}

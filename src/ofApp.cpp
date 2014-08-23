@@ -146,7 +146,7 @@ void ofApp::draw(){
     for (int i=0; i<channels.size(); i++) {
         channel *channel = channels[i];
         
-        if (channel->mSyphonServerName == "F0") {
+        if (channel->mSyphonServerName == "F4") {
             channel->draw(0,0);
         }
     }
@@ -220,6 +220,31 @@ void ofApp::keyPressed(int key){
     
 }
 
+void ofApp::mousePressed(int x, int y, int button){
+    
+    for (int i=0; i<channels.size(); i++) {
+        channel *channel = channels[i];
+        
+        if (channel->mSyphonServerName == "F4") {
+            chessBoard2s[4]->tiggerAtPoint(x, y, "press");
+        }
+    }
+    
+    
+}
+
+void ofApp::mouseReleased(int x, int y, int button){
+    
+    for (int i=0; i<channels.size(); i++) {
+        channel *channel = channels[i];
+        
+        if (channel->mSyphonServerName == "F4") {
+            chessBoard2s[4]->tiggerAtPoint(x, y, "release");
+        }
+    }
+    
+}
+
 // ------------------------------------ Channel controlling ------------------------------------
 
 void ofApp::setBoardsArrayTrueOnlyAtIndex(int index){
@@ -253,8 +278,4 @@ void ofApp::setChannelsArrayFalse(){
         channelsArray[i]=false;
     }
 }
-
-
-
-
 

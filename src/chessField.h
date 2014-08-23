@@ -12,7 +12,7 @@
 #include <iostream>
 #import "ofMain.h"
 
-class chessField : ofRectangle{
+class chessField : public ofRectangle{
     
 public:
     chessField(float x, float y, float size);
@@ -20,14 +20,22 @@ public:
     void update();
     void draw();
     void setColor(int r, int g, int b);
+    void setTempColor(int r, int g, int b);
     void playSound(int i);
     
-private:
-    int _red;
-    int _green;
-    int _blue;
+    bool tmpColor;
     
-    ofSoundPlayer _soundPlayer;
+    int mRed;
+    int mGreen;
+    int mBlue;
+    
+    int mTmpRed;
+    int mTmpGreen;
+    int mTmpBlue;
+    
+private:
+    
+    ofSoundPlayer mSoundPlayer;
     
 };
 

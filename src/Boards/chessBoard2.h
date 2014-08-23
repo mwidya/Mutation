@@ -18,6 +18,7 @@ class chessBoard2{
 public:
     chessBoard2(ofFbo *fbo);
     void update();
+    void tiggerAtPoint(int x, int y, string event);
     
 private:
     ofFbo *mFbo;
