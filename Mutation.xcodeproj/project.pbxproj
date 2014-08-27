@@ -28,6 +28,10 @@
 		E7F985F815E0DEA3003869B5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7F985F515E0DE99003869B5 /* Accelerate.framework */; };
 		EE41190D19A2880C00828A45 /* movingFrameBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE41190B19A2880C00828A45 /* movingFrameBoard.cpp */; };
 		EE4EC5FE19A8D57400FDFB74 /* chessField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4EC5FC19A8D57400FDFB74 /* chessField.cpp */; };
+		EE4EC61F19A8F60500FDFB74 /* ofxTCPClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4EC61719A8F60500FDFB74 /* ofxTCPClient.cpp */; };
+		EE4EC62019A8F60500FDFB74 /* ofxTCPManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4EC61919A8F60500FDFB74 /* ofxTCPManager.cpp */; };
+		EE4EC62119A8F60500FDFB74 /* ofxTCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4EC61B19A8F60500FDFB74 /* ofxTCPServer.cpp */; };
+		EE4EC62219A8F60500FDFB74 /* ofxUDPManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE4EC61D19A8F60500FDFB74 /* ofxUDPManager.cpp */; };
 		EE68A1D0198B990600439139 /* channel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE68A1CE198B990600439139 /* channel.cpp */; };
 		EE80835219893A6C00317DBF /* Syphon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE80834019893A6C00317DBF /* Syphon.framework */; };
 		EE80835319893A6C00317DBF /* SyphonNameboundClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EE80834319893A6C00317DBF /* SyphonNameboundClient.m */; };
@@ -101,6 +105,17 @@
 		EE41190C19A2880C00828A45 /* movingFrameBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = movingFrameBoard.h; path = Boards/movingFrameBoard.h; sourceTree = "<group>"; };
 		EE4EC5FC19A8D57400FDFB74 /* chessField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chessField.cpp; sourceTree = "<group>"; };
 		EE4EC5FD19A8D57400FDFB74 /* chessField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = chessField.h; sourceTree = "<group>"; };
+		EE4EC61319A8F60500FDFB74 /* Instructions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Instructions.txt; sourceTree = "<group>"; };
+		EE4EC61519A8F60500FDFB74 /* ofxNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNetwork.h; sourceTree = "<group>"; };
+		EE4EC61619A8F60500FDFB74 /* ofxNetworkUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNetworkUtils.h; sourceTree = "<group>"; };
+		EE4EC61719A8F60500FDFB74 /* ofxTCPClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTCPClient.cpp; sourceTree = "<group>"; };
+		EE4EC61819A8F60500FDFB74 /* ofxTCPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTCPClient.h; sourceTree = "<group>"; };
+		EE4EC61919A8F60500FDFB74 /* ofxTCPManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTCPManager.cpp; sourceTree = "<group>"; };
+		EE4EC61A19A8F60500FDFB74 /* ofxTCPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTCPManager.h; sourceTree = "<group>"; };
+		EE4EC61B19A8F60500FDFB74 /* ofxTCPServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTCPServer.cpp; sourceTree = "<group>"; };
+		EE4EC61C19A8F60500FDFB74 /* ofxTCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTCPServer.h; sourceTree = "<group>"; };
+		EE4EC61D19A8F60500FDFB74 /* ofxUDPManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxUDPManager.cpp; sourceTree = "<group>"; };
+		EE4EC61E19A8F60500FDFB74 /* ofxUDPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxUDPManager.h; sourceTree = "<group>"; };
 		EE68A1CE198B990600439139 /* channel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = channel.cpp; sourceTree = "<group>"; };
 		EE68A1CF198B990600439139 /* channel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = channel.h; sourceTree = "<group>"; };
 		EE80834019893A6C00317DBF /* Syphon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Syphon.framework; sourceTree = "<group>"; };
@@ -154,6 +169,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				EE4EC61119A8F60500FDFB74 /* ofxNetwork */,
 				EE80832119893A6C00317DBF /* ofxSyphon */,
 			);
 			name = addons;
@@ -258,6 +274,41 @@
 				EE4EC5FD19A8D57400FDFB74 /* chessField.h */,
 			);
 			name = Boards;
+			sourceTree = "<group>";
+		};
+		EE4EC61119A8F60500FDFB74 /* ofxNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				EE4EC61219A8F60500FDFB74 /* docs */,
+				EE4EC61419A8F60500FDFB74 /* src */,
+			);
+			name = ofxNetwork;
+			path = ../../../addons/ofxNetwork;
+			sourceTree = "<group>";
+		};
+		EE4EC61219A8F60500FDFB74 /* docs */ = {
+			isa = PBXGroup;
+			children = (
+				EE4EC61319A8F60500FDFB74 /* Instructions.txt */,
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		EE4EC61419A8F60500FDFB74 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				EE4EC61519A8F60500FDFB74 /* ofxNetwork.h */,
+				EE4EC61619A8F60500FDFB74 /* ofxNetworkUtils.h */,
+				EE4EC61719A8F60500FDFB74 /* ofxTCPClient.cpp */,
+				EE4EC61819A8F60500FDFB74 /* ofxTCPClient.h */,
+				EE4EC61919A8F60500FDFB74 /* ofxTCPManager.cpp */,
+				EE4EC61A19A8F60500FDFB74 /* ofxTCPManager.h */,
+				EE4EC61B19A8F60500FDFB74 /* ofxTCPServer.cpp */,
+				EE4EC61C19A8F60500FDFB74 /* ofxTCPServer.h */,
+				EE4EC61D19A8F60500FDFB74 /* ofxUDPManager.cpp */,
+				EE4EC61E19A8F60500FDFB74 /* ofxUDPManager.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		EE80832119893A6C00317DBF /* ofxSyphon */ = {
@@ -414,15 +465,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEBA229B19A38C6F0082B1C3 /* oneColorBoard.cpp in Sources */,
+				EE4EC62019A8F60500FDFB74 /* ofxTCPManager.cpp in Sources */,
 				EE41190D19A2880C00828A45 /* movingFrameBoard.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
+				EE4EC62219A8F60500FDFB74 /* ofxUDPManager.cpp in Sources */,
 				EE80835619893A6C00317DBF /* ofxSyphonServerDirectory.mm in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				EE80835319893A6C00317DBF /* SyphonNameboundClient.m in Sources */,
+				EE4EC61F19A8F60500FDFB74 /* ofxTCPClient.cpp in Sources */,
 				EEBA229119A35F990082B1C3 /* chessBoard1.cpp in Sources */,
 				EE4EC5FE19A8D57400FDFB74 /* chessField.cpp in Sources */,
 				EE80835519893A6C00317DBF /* ofxSyphonServer.mm in Sources */,
 				EE988B4E19A8A78300D6941C /* chessBoard2.cpp in Sources */,
+				EE4EC62119A8F60500FDFB74 /* ofxTCPServer.cpp in Sources */,
 				EE80835419893A6C00317DBF /* ofxSyphonClient.mm in Sources */,
 				EE68A1D0198B990600439139 /* channel.cpp in Sources */,
 				EEBA229819A384640082B1C3 /* testBoard.cpp in Sources */,

@@ -52,8 +52,16 @@ void ofApp::setupChannels(){
 
 }
 
+void ofApp::setupTcpServer(){
+    
+    tcpConnected = tcpServer.setup(PORT);
+    tcpServer.setMessageDelimiter("\n");
+	
+}
+
 void ofApp::setup(){
     
+    setupTcpServer();
     setupArrays();
     setupSound();
     setupChannels();
@@ -97,8 +105,6 @@ void ofApp::updateSound(){
 
 void ofApp::updateChannel(channel *channel, int index){
     
-    updateSound();
-    
     channel->mFbo.begin();
     
     if (channelsArray[index]) {
@@ -125,10 +131,30 @@ void ofApp::updateChannel(channel *channel, int index){
     
 }
 
+void ofApp::updateTcpServer(){
+    
+    for(unsigned int i = 0; i <  (unsigned int)tcpServer.getLastID(); i++){
+        
+        if( !tcpServer.isClientConnected(i) ) {
+            continue;
+        }
+        
+        string msgRx = tcpServer.receive(i);
+        if (msgRx.length() > 0) {
+//            parseJSONString(msgRx);
+//            tiggerAtPoint(screenPoint.x, screenPoint.y, event);
+            
+        }
+    }
+}
+
 void ofApp::update(){
     
+    updateSound();
+    updateTcpServer();
+    
     for (int i=0; i<channels.size(); i++) {
-        
+
         channel *channel = channels[i];
         updateChannel(channel, i);
         
@@ -151,6 +177,21 @@ void ofApp::draw(){
         }
     }
     
+    if (tcpConnected) {
+        string str = "TCP server with IP " + ofToString(IP)  + " is online at port: " + ofToString(tcpServer.getPort()) + ", clients: " + ofToString(tcpServer.getNumClients());
+        ofSetColor(0, 255, 0);
+        ofDrawBitmapString(str, 10, ofGetHeight()-15);
+        
+        for(unsigned int i = 0; i <  (unsigned int)tcpServer.getLastID(); i++){
+            if( !tcpServer.isClientConnected(i) ) {
+                continue;
+            }else{
+                string str = "TCP client with IP " + ofToString(tcpServer.getClientIP(i))+" is connected.";
+                ofSetColor(0, 255, 0);
+                ofDrawBitmapString(str, 10, ofGetHeight()-(15*(i+2)));
+            }
+        }
+    }
 }
 
 void ofApp::keyPressed(int key){

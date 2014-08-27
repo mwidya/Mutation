@@ -9,6 +9,9 @@
 #ifndef Mutation_constants_h
 #define Mutation_constants_h
 
+#define IP "10.0.0.1"
+#define PORT 12333
+
 float factor = 0.1f;
 // 1.0 = 1 meter
 float levelDistance = 3000*factor;

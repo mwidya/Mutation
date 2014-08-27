@@ -7,6 +7,7 @@
 #include "testBoard.h"
 #include "oneColorBoard.h"
 #include "chessBoard2.h"
+#include "ofxNetwork.h"
 
 class ofApp : public ofBaseApp{
 
@@ -17,12 +18,14 @@ public:
     void setupArrays();
     void setupSound();
     void setupChannels();
+    void setupTcpServer();
     void setup();
     
     // ------------------------------------ Updates ------------------------------------
     
     void updateSound();
     void updateChannel(channel *channel, int index);
+    void updateTcpServer();
     void update();
     
     // ------------------------------------ of Lifecycle ------------------------------------
@@ -71,5 +74,12 @@ public:
     bool soundIsPlaying;
     float *fftSmoothed;
     int nBandsToGet;
+    
+    // ------------------------------------ Network ------------------------------------
+    
+    ofxTCPServer tcpServer;
+    bool tcpConnected;
+    int deltaTime = 0;
+    int connectTime = 0;
     
 };
